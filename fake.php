@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 <body>
-
 <h2>HTML Forms</h2>
 
 <form action="fake.php">

@@ -1,6 +1,4 @@
 <?php
-
-
 if(isset($_POST['submit'])) {
 //print_r($_POST);die;
 	$a=$_POST['uid'];

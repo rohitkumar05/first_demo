@@ -1,0 +1,3 @@
+if (self.CavalryLogger) { CavalryLogger.start_js(["0tizP"]); }
+
+__d("UFI2CommentTimestamp.react",["fbt","React","Timestamp.react","formatDate"],(function(a,b,c,d,e,f,g){"use strict";__p&&__p();a=function(a){babelHelpers.inheritsLoose(c,a);function c(){return a.apply(this,arguments)||this}var d=c.prototype;d.render=function(){var a=this.props.createdTime;return b("React").createElement(b("Timestamp.react"),{autoUpdate:!0,minimize:!0,time:a,useLargerTimeUnits:!0,useTooltip:!0,verbose:g._("{date} at {time}",[g._param("date",b("formatDate")(a,"l, F j, Y")),g._param("time",b("formatDate")(a,"g:i A"))])})};return c}(b("React").PureComponent);e.exports=a}),null);

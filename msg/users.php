@@ -3,6 +3,7 @@
 <?php
 
 if(isset($_POST['submit'])) {
+  echo"yes";die();
 //print_r($_POST);die;
 	$first_name=$_POST['first_name'];
 	$last_name=$_POST['last_name'];
@@ -29,8 +30,14 @@ echo "Connected successfully";
 
 $sql="insert into users(first_name,last_name,email,password,confirm_password,gender,address,phone_number,zip_code,city,state,country)
 values('$first_name','$last_name','$email','$password','$confirm_password','$gender','$address','$phone_number',',$zip_code','$city','$state','$country')";
-
+if($mysqli->query($sql)){
+echo("hye");
+}
+else{
+  ("bye");
+}
  
+
 //die($sql) => die($sql);
 	if ($conn->query($sql) === TRUE) {
     echo "New record created successfully";

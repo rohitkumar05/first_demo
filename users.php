@@ -1,21 +1,20 @@
 
 <!---------START SUBMIT------------>
 <?php
-
-if(isset($_POST['submit'])) {
+if(isset($_GET['submit'])) {
 //print_r($_POST);die;
-	$first_name=$_POST['first_name'];
-	$last_name=$_POST['last_name'];
-	$email=$_POST['email'];
-	$password=$_POST['password'];
-	$confirm_password=$_POST['confirm_password'];
-	$gender=$_POST['gender'];
-    $address=$_POST['address'];
-    $phone_number=$_POST['phone_number'];
-    $zip_code=$_POST['zip_code'];
-	$city=$_POST['city'];
-	$state=$_POST['state'];
-    $country=$_POST['country'];
+	$first_name=$_GET['first_name'];
+	$last_name=$_GET['last_name'];
+	$email=$_GET['email'];
+	$password=$_GET['password'];
+	$confirm_password=$_GET['confirm_password'];
+	$gender=$_GET['gender'];
+    $address=$_GET['address'];
+    $phone_number=$_GET['phone_number'];
+    $zip_code=$_GET['zip_code'];
+	$city=$_GET['city'];
+	$state=$_GET['state'];
+    $country=$_GET['country'];
 //$con=mysqli_connect("localhost","root","hms@2019","user");
 // Create connection
 $conn = new mysqli("localhost","root","hms@2019","first");
@@ -29,8 +28,8 @@ echo "Connected successfully";
 
 $sql="insert into users(first_name,last_name,email,password,confirm_password,gender,address,phone_number,zip_code,city,state,country)
 values('$first_name','$last_name','$email','$password','$confirm_password','$gender','$address','$phone_number',',$zip_code','$city','$state','$country')";
-
  
+
 //die($sql) => die($sql);
 	if ($conn->query($sql) === TRUE) {
     echo "New record created successfully";

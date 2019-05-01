@@ -3,50 +3,19 @@
 <?php
 include_once('./common_files/validate.php');
 include_once('./common_files/common_function.php');
+include_once('./common_files/database_queries.php');
 
 
 if(isset($_POST['submit'])) {
-
-//print_r($_POST);die;
-	$first_name=$_POST['first_name'];
-	$last_name=$_POST['last_name'];
-	$email=$_POST['email'];
-	$password=$_POST['password'];
-	$confirm_password=$_POST['confirm_password'];
-	$gender=$_POST['gender'];
-  $address=$_POST['address'];
-  $phone_number=$_POST['phone_number'];
-  $zip_code=$_POST['zip_code'];
-	$city=$_POST['city'];
-	$state=$_POST['state'];
-  $country=$_POST['country'];
-
   $validation = new Validations;
   $errors  = $validation->validate_user_form($_POST);
-// echo '<pre>'; print_r($errors); die;
-//$con=mysqli_connect("localhost","root","hms@2019","user");
-// Create connection
 
   if (count($errors) == 0) {
-    $conn = new mysqli("localhost","root","hms@2019","first");
-
-    // Check connection
-    if ($conn->connect_error) {
-        die($sql); ("Connection failed: " . $conn->connect_error);
-    } 
-    echo "Connected successfully"; 
-    $common_function = new CommonFunction	;
-    $encrypted_password = $common_function->encrypt_our_password($password);
-    $sql="insert into users(first_name,last_name,email,password,gender,address,phone_number,zip_code,city,state,country)
-    values('$first_name','$last_name','$email','$encrypted_password','$gender','$address','$phone_number',',$zip_code','$city','$state','$country')";
-
-    if ($conn->query($sql) === TRUE) {
-        echo "New record created successfully";
-    } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
-    }
-
-    $conn->close();
+    $common_function = new CommonFunction;
+        
+    $encrypted_password = $common_function->encrypt_our_password($userData['password']);
+    $dbQueries = new DbQueries;
+    $dbQueries->saveUser($_POST, $encrypted_password);
   }
     
 }
@@ -62,7 +31,7 @@ if(isset($_POST['submit'])) {
 <?php include_once('./partials/header.php'); ?>
 <center>
 <div class="container">
-<form action=""  method="POST" id="myform12" novalidate>
+<form action=""  method="POST" id="myform" novalidate>
     <div class="form-group">
     <table class="table table-striped">
       
@@ -265,97 +234,6 @@ if(isset($_POST['submit'])) {
 
 <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
 <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
-<script>
-// just for the demos, avoids form submit
-// jQuery.validator.setDefaults({
-//   debug: true,
-//   success: "valid"
-// });
-$(document).ready(function() {
-  $( "#myform" ).validate({
-    rules: {
-      first_name: {
-        required: true,
-      },
-      last_name: {
-        required: true,
-      },
-      email:{
-        required: true,
-      },
-      password: {
-        required: true,
-      },
-      confirm_password: {
-        required: true,
-        equalTo: "#password"
-      },
-      gender: {
-        required: true,
-      },
-      address: {
-        required: true,
-      },
-      phone_number: {
-        required: true,
-      },
-      zip_code: {
-        required: true,
-      },
-      city: {
-        required: true,
-      },
-      state: {
-        required: true,
-      },
-      country: {
-        required: true,
-      },
-    },
-    messages: {
-      first_name: {
-        required: "FIRST NAME IS REQUIRED",
-      },
-      last_name: {
-        required: "LAST NAME IS REQUIRED",
-      },
-      email: {
-        required: "EMAIL IS REQUIRED",
-      },
-      password: {
-        required: "Password Is Required",
-      },
-      confirm_password: {
-        required: "Password Is Required",
-        equalTo: "Confirm Password is   Not Match"
-      },
-      gender: {
-        required: "Gender Is Required",
-      },
-      address: {
-        required: "Address Is Required",
-      },
-      phone_number: {
-        required: "Phone Number Is Required",
-      },
-      zip_code: {
-        required: "Zip Code Is Required",
-      },
-      city: {
-        required: "City Is Required",
-      },
-      state: {
-        required: "State Is Required",
-      },
-      country: {
-        required: "Country Is Required",
-      },
-      
-    }
-  
-  });
-});
-
-</script>
+<script src="http://localhost/first_demo/assets/js/user_validation.js"></script>
 
 <?php include_once('./partials/footer.php');?>

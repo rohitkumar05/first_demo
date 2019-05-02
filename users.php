@@ -51,6 +51,7 @@ if(isset($_POST['submit'])) {
 
 
           </div>
+          <br>
           <div>
           <label>LAST NAME:</label>
           <input type="text" placeholder="ENTER LAST NAME :" id="last_name"  name="last_name" class="form-control demo" >
@@ -62,11 +63,10 @@ if(isset($_POST['submit'])) {
               }
           ?>
          </div>
-
-          <tr>
-          <th>E-MAIL:</th>
-          <td>
-            <input type="email" placeholder="ENTER E-MAIL :" name="email" class="demo">
+         <br>
+          <div>
+          <label>E-MAIL:</label>
+            <input type="email" placeholder="ENTER E-MAIL :" name="email" class="form-control demo">
             <?php 
               if (isset($errors['email'])) {
                 ?>
@@ -74,11 +74,11 @@ if(isset($_POST['submit'])) {
                 <?php
               }
           ?>
-          </td>
-          </tr>
-          <tr>
-          <th>PASSWORD:</th>
-          <td><input type="password" id="password" placeholder="ENTER PASSWORD :" name="password" class="demo">
+          </div>
+          <br>
+          <div>
+          <label>PASSWORD:</label>
+          <input type="password" id="password" placeholder="ENTER PASSWORD :" name="password" class="form-control demo">
           <?php 
               if (isset($errors['password'])) {
                 ?>
@@ -86,11 +86,11 @@ if(isset($_POST['submit'])) {
                 <?php
               }
           ?>
-          </td>
-          </tr>
-          <tr>
-          <th>CONFIRM PASSWORD:</th>
-          <td><input type="password" id="confirm_password" placeholder="ENTER CONFIRM PASSWORD :" name="confirm_password" class="demo">
+          </div>
+
+          <div>
+          <label>Confirm PASSWORD:</label>
+          <input type="password" id="confirm_password" placeholder="ENTER Confirm PASSWORD :" name="confirm_password" class="form-control demo">
           <?php 
               if (isset($errors['confirm_password'])) {
                 ?>
@@ -98,26 +98,30 @@ if(isset($_POST['submit'])) {
                 <?php
               }
           ?>
-          </td>
-          </tr>
-          <div class="demo">
-          <tr>
-          <th>GENTER : </th>
-          <td> <input type="radio" name="gender" value="male"> Male
+          </div>
+
+
+          <br>
+          <div class="input-radio demo">
+          
+          
+          <label>GENTER : </label>
+           <input type="radio" name="gender" value="male" > Male
             <input type="radio" name="gender" value="female"> Female
             <input type="radio" name="gender" value="other"> Other 
             <?php 
               if (isset($errors['gender'])) {
                 ?>
-                  <label><?php echo $errors['gender'] ?></label>
+                  <?php echo $errors['gender'] ?>
                 <?php
               }
           ?>
-          </tr>
+          
           </div>
-          <tr>
-          <th>ADDRESS:</th>
-          <td><input type="text" placeholder="ENTER ADDRESS :" id="address" name="address" class="demo">
+          <br>
+          <div>
+          <label>ADDRESS:</label>
+          <input type="text" placeholder="ENTER ADDRESS :" id="address" name="address" class="form-control demo">
           <?php 
               if (isset($errors['address'])) {
                 ?>
@@ -125,11 +129,10 @@ if(isset($_POST['submit'])) {
                 <?php
               }
           ?>
-          </td>
-          </tr>
-          <tr>
-          <th>PHONE NUMBER:</th>
-          <td><input type="text" placeholder="ENTER NUMBER" id="phone_number" name="phone_number" class="demo">
+          </div>
+          <div>
+          <label>PHONE NUMBER:</label>
+          <input type="text" placeholder="ENTER NUMBER" id="phone_number" name="phone_number" class="form-control demo">
           <?php 
               if (isset($errors['phone_number'])) {
                 ?>
@@ -137,11 +140,10 @@ if(isset($_POST['submit'])) {
                 <?php
               }
           ?>
-          </td>
-          </tr>
-          <tr>
-          <th>ZIP CODE:</th>
-          <td><input type="text" placeholder="ENTER ZIP CODE" id="zip_code" name="zip_code" class="demo">
+          </div>
+          <div>
+          <label>ZIP CODE:</label>
+          <input type="text" placeholder="ENTER ZIP CODE" id="zip_code" name="zip_code" class="form-control demo">
           <?php 
               if (isset($errors['zip_code'])) {
                 ?>
@@ -149,11 +151,10 @@ if(isset($_POST['submit'])) {
                 <?php
               }
           ?>
-          </td>
-          </tr>
-          <tr>
-          <th>CITY:</th>
-          <td><input type="text" placeholder="ENTER CITY :" id="city" name="city" class="demo">
+          </div>
+          <div>
+          <label>CITY:</label>
+          <td><input type="text" placeholder="ENTER CITY :" id="city" name="city" class="form-control demo">
           <?php 
               if (isset($errors['city'])) {
                 ?>
@@ -161,12 +162,11 @@ if(isset($_POST['submit'])) {
                 <?php
               }
           ?>
-          </td>
-          </tr>
-          <tr>
-          <th>STATE</th>
+          </div>
+          <div>
+          <label>STATE</label>
 
-          <td><select name="state"  id="state" class="demo">
+          <select name="state"  id="state" class="form-control demo">
             <option value="">--SELECT STATE--</option>
             <option value="Andhra Pradesh">Andhra Pradesh</option>
             <option value="Arunachal Pradesh">Arunachal Pradesh</option>
@@ -190,9 +190,10 @@ if(isset($_POST['submit'])) {
                 <?php
               }
           ?>
-          </tr>
-          <th>COUNTRY:</th>
-          <td><select name="country" id="country" class="demo">
+          </div>
+          <div>
+          <label>COUNTRY:</label>
+          <select name="country" id="country" class="form-control demo">
             <option value="">--SELECT COUNTRY--</option>
             
             <option value="India">India</option>
@@ -217,16 +218,15 @@ if(isset($_POST['submit'])) {
                 <?php
               }
           ?>
-          <div class="container">
-          <tr>
-          <td></td>
-            <td><input type="submit" class="btn btn-default" value="SUBMIT" name="submit"></td>
-          </tr>
           </div>
-          </div>
+    
+          
+          
+          <div>
+          <input type="submit" class="btn btn-success col-md-3 form-control  container form-control " value="SUBMIT" name="submit">
           </div>
           </div> 
-          </table>
+        
     </div>
 </form>
 

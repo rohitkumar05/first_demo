@@ -1,7 +1,21 @@
 <?php
-   class Validations {
+require_once('db_connect.php');
+
+   class Validations extends DbConnect {
       
-      
+      private function validateEmail($mail) {
+         
+         $sql = "SELECT * FROM users WHERE email = '".$mail."'";
+         $result=mysqli_query($this->conn,$sql);
+         $rows = mysqli_num_rows($result);
+         if ($rows > 0) {
+           return true;  
+         } else {
+           return false;
+         }
+      }
+
+
       public function validate_user_form($data) {
 
          $errors = [];
@@ -17,6 +31,9 @@
          } else {
             if (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
                 $errors['email'] = "Please enter valid Email" ;
+             }
+             if ($this->validateEmail($data['email'])) {
+               $errors['email'] = "Email Already exists" ;
              }
          }
 
@@ -44,11 +61,9 @@
          if (empty($data['address'])) {
             $errors['address'] = "Please enter address" ;
          }
-
          if (empty($data['phone_number'])) {
             $errors['phone_number'] = "Please enter phone number" ;
          }
-
          if (empty($data['zip_code'])) {
             $errors['zip_code'] = "Please enter zip code" ;
          }

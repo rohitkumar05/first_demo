@@ -26,17 +26,17 @@ if ($_POST['submit']) {
 ?>
 
 <?php include_once('./partials/header.php'); ?>
-
-<form action=""  method="POST" id="myform123" novalidate>
-
+<div class="container">
+<div class="col-md-12">
+<form action=""  method="POST" id="myform" novalidate>
+<div class="col-md-8 col-md-offset-2">
 <div class="form-group">
-    <table class="table table-striped">
       
 <h1 style="color:black;"> USER  LOGIN </h1>
-<tr>
-<th>E-MAIL:</th>
-<td>
-  <input type="email" placeholder="ENTER E-MAIL :" name="email" class="demo">
+<div>
+<label>E-MAIL:</label>
+
+  <input type="email" placeholder="ENTER E-MAIL :" name="email" class="form-control demo">
   <?php 
     if (isset($errors['email'])) {
       ?>
@@ -44,11 +44,11 @@ if ($_POST['submit']) {
       <?php
     }
  ?>
-</td>
-</tr>
-<tr>
-<th>PASSWORD:</th>
-<td><input type="password" id="password" placeholder="ENTER PASSWORD :" name="password" class="demo">
+</div>
+<br>
+<div>
+<label>PASSWORD:</label>
+<input type="password" id="password" placeholder="ENTER PASSWORD :" name="password" class="form-control demo">
 <?php 
     if (isset($errors['password'])) {
       ?>
@@ -56,16 +56,15 @@ if ($_POST['submit']) {
       <?php
     }
  ?> 
-</td>
-</tr>
-<div class="container">
-<tr>
-<td></td>
-   <td><input type="submit" class="btn btn-default" value="SUBMIT" name="submit"></td>
-   
-</tr>
 </div>
 
+
+
+   <input type="submit" class="col-md-8 col-md-offset-2 btn btn-success container " value="SUBMIT" name="submit">
+   
+
+</div>
+  </div>
 </table>
 </form>
 

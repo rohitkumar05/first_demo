@@ -1,21 +1,14 @@
 <?php
 session_start();
 
-if (empty($_SESSION)) {
-    header('Location: http://localhost/first_demo/login.php');
-}
-
+require_once('./common_files/common_function.php');
+$commonFunction = new CommonFunction;
+$commonFunction->redrectToLogin();
 //move this code to common function file
 if (isset($_GET) && $_GET['logout'] == 'true') {
-    if (isset($_SESSION) && $_SESSION['login'] == true) {
-        session_destroy();
-        header('Location: http://localhost/first_demo/login.php');
-    } else {
-        die('I am already out');
-    }
-    
+    $commonFunction = new CommonFunction;
+    $commonFunction->userLogout();
 }
-
 ?>
 
 <?php include_once('./partials/header.php'); ?>

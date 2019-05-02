@@ -1,4 +1,5 @@
 <?php
+//die("my");
 class DbConnect
 {
     protected $conn;

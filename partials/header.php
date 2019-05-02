@@ -17,7 +17,8 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-
+<?php include_once('./partials/navbar.php'); ?>
 <div class="container">
+
 <center>
 <img src="image/Customers_customer_user_male_man_people_light.png" class="mx-auto d-block" style="width:10%"> 

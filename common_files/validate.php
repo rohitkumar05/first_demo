@@ -1,5 +1,7 @@
 <?php
    class Validations {
+      
+      
       public function validate_user_form($data) {
 
          $errors = [];
@@ -39,7 +41,6 @@
          if (empty($data['gender'])) {
             $errors['gender'] = "Please enter gender" ;
          }
-
          if (empty($data['address'])) {
             $errors['address'] = "Please enter address" ;
          }
@@ -62,6 +63,18 @@
 
          if (empty($data['country'])) {
             $errors['country'] = "Please enter state" ;
+         }
+         return $errors;
+      }
+
+      public function validate_login_form($data) {
+         $errors = [];
+         if (empty($data['email'])) {
+            $errors['email'] = "Please Enter Email";
+         }
+
+         if (empty($data['password'])) {
+            $errors['password'] = "Please Enter Password";
          }
          return $errors;
       }

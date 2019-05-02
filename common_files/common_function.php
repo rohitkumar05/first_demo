@@ -6,4 +6,13 @@ class CommonFunction {
         // echo "I m here";die;
         return hash('sha256', $password);
     }
+
+
+    public function checkSession(){
+        if (empty($_SESSION)) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 }

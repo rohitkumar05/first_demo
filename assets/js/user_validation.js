@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  alert("hello");
+ 
   $( "#myform" ).validate({
     rules: {
       first_name: {

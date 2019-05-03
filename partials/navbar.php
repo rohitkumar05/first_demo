@@ -1,12 +1,12 @@
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">WebSiteName</a>
+      <a class="navbar-brand" href="#">APPNA PROJECT.COM</a>
     </div>
     <ul class="nav navbar-nav">
       <li class="active"><a href="#">Home</a></li>
-      <li><a href="#">EDIT</a></li>
-      <li><a href="#">ADD</a></li>
+      <li><a href="fetch.php">fetch</a></li>
+      <li><a href="#">DELETE</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
         <?php

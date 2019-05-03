@@ -21,4 +21,4 @@
 <div class="container">
 
 <center>
-<img src="image/Customers_customer_user_male_man_people_light.png" class="mx-auto d-block" style="width:10%"> 
+<img src="http://localhost/first_demo/partials/images.png-" class="mx-auto d-block" style="width:10%"> 

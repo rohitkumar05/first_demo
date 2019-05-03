@@ -15,7 +15,7 @@ require_once('db_connect.php');
          }
       }
 
-
+      
       public function validate_user_form($data) {
 
          $errors = [];

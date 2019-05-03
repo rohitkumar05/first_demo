@@ -24,7 +24,6 @@ if ($_POST['submit']) {
     }
 }
 ?>
-
 <?php include_once('./partials/header.php'); ?>
 <div class="container">
 <div class="col-md-12">

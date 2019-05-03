@@ -1,59 +1,59 @@
 <?php
-$conn = new mysqli("localhost","root","hms@2019","first");{
-    // Check connection
-    if ($conn->connect_error) {
-        die($sql); ("Connection failed: " . $conn->connect_error);
-    } 
-    $sql = "SELECT * FROM users";
-    $result = $conn->query($sql);
-    if ($result){
-        while($row = $result->fetch_assoc()) {
-            // echo $row["first_name"];
-        }
-    }
-    // $conn->close();
+session_start();
 
-?>     
-<?php include_once('./partials/header.php'); ?>
-<center>
-<div class="container">
-<form action=""  method="POST">
-    <div class="form-group">
-    <table class="table table-dark table-striped" >
-        <h1 style="color:white;"> USERS INFORMATION</h1>
-        <thead>
-        <tr>
-            <th>FIRST NAME:</th>
-            <th>LAST NAME:</th>
-            <th>E-MAIL:</th>
-            <th>PASSWORD:</th>
-            <th>CONFIRM PASSWORD:</th>
-            <th>GENTER:</th>
-            <th>ADDRESS:</th>
-            <th>PHONE NUMBER:</th>
-            <th>ZIP CODE:</th>
-            <th>CITY:</th>
-            <th>STATE:</th>
-            <th>COUNTRY:</th>
-        </tr>
-        </thead>
-        <tbody>
-        <?php
-        if ($result){
-            while($row = $result->fetch_assoc()) {
-                
-        echo $row->id;
-                
-            }
-        }
-        ?>
-        
-            
-        </tbody>
-    </table>
-</form>
-<?php include_once('./partials/footer.php'); ?> 
+require_once('./common_files/common_function.php');
+$commonFunction = new CommonFunction;
+$commonFunction->redrectToLogin();
 
-<?php 
-}
+
+
+
+require_once('./common_files/database_queries.php');
+
+$dbQueries = new DbQueries;
+
+$result = $dbQueries->fetch_users();
+   // echo '<pre>'; print_r($result);die;
 ?>
+
+<?php include_once('./partials/header.php'); ?>
+    <center>
+    <div class="container">
+    <form action=""  method="POST">
+        <table border="1">        <div class="form-group">
+        
+                <tr>
+                    <td>FIRST NAME:</td>
+                    <td>LAST NAME:</td>
+                    
+                    <td>GENTER:</td>
+                    <td>ADDRESS:</td>
+                    <td>PHONE NUMBER:</td>
+                    <td>ZIP CODE:</td>
+                    <td>CITY:</td>
+                    <td>STATE:</td>
+                    <td>COUNTRY:</td>
+                
+        </tr>
+        <?php while($row = mysqli_fetch_array($result)) {?>
+            <tr>
+                    <td><?php echo $row['first_name'];?></td>
+                    <td><?php echo $row['last_name'];?></td>
+                    
+                    <td><?php echo $row['gender'];?></td>
+                    <td><?php echo $row['address'];?></td>
+                    <td><?php echo $row['phone_number'];?></td>
+                    <td><?php echo $row['zip_code'];?></td>
+                    <td><?php echo $row['city'];?></td>
+                    <td><?php echo $row['state'];?></td>
+                    <td><?php echo $row['country'];?></td>
+                    <td><a href="edit.php?id=<?php echo $row['id']?>">EDIT</a>  
+                    <td><a href="">DELETE</a> 
+        </tr>
+
+        <?php } ?>
+        
+    </form>
+<?php include_once('./partials/footer.php'); 
+
+?> 

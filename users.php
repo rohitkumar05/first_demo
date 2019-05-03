@@ -1,15 +1,11 @@
-
 <!---------START SUBMIT------------>
 <?php
 include_once('./common_files/validate.php');
 include_once('./common_files/common_function.php');
 include_once('./common_files/database_queries.php');
-
-
 if(isset($_POST['submit'])) {
   $validation = new Validations;
   $errors  = $validation->validate_user_form($_POST);
-
   if (count($errors) == 0) {
     $common_function = new CommonFunction;
         
@@ -17,10 +13,13 @@ if(isset($_POST['submit'])) {
     $dbQueries = new DbQueries;
     $dbQueries->saveUser($_POST, $encrypted_password);
   }
-    
+
+
 }
-
-
+$commonFunction = new CommonFunction;
+$countries = $commonFunction->countryList();
+$states = $commonFunction->stateList();
+//echo '<pre>'; print_r($states);die;
 ?>
 
 <!------------submit  end------------->
@@ -165,24 +164,14 @@ if(isset($_POST['submit'])) {
           </div>
           <div>
           <label>STATE</label>
+          <select name="state" id="state" class="form-control demo" >
+            <option value="">--SELECT COUNTRY--</option>
 
-          <select name="state"  id="state" class="form-control demo">
-            <option value="">--SELECT STATE--</option>
-            <option value="Andhra Pradesh">Andhra Pradesh</option>
-            <option value="Arunachal Pradesh">Arunachal Pradesh</option>
-            <option value="Assam">Assam</option>
-            <option value="Bihar">Bihar</option>
-            <option value="Chhattisgarh">Chhattisgarh</option>
-            <option value="Goa">Goa</option>
-            <option value="Gujarat">Gujarat</option>
-            <option value="Haryana">Haryana</option>
-            <option value="Himachal Pradesh">Himachal Pradesh</option>
-            <option value="Jammu & Kashmir">Jammu & Kashmir</option>
-            <option value="Jharkhand">Jharkhand</option>
-            <option value="Karnataka">Karnataka</option>
-            <option value="Kerala">Kerala</option>
-            <option value="Maharashtra">Maharashtra</option>
+            <?php foreach($states as $state) {?>
+                <option value="<?php echo $state;?>"><?php echo $state;?></option>
+            <?php } ?>
           </select>
+          
           <?php 
               if (isset($errors['state'])) {
                 ?>
@@ -193,23 +182,12 @@ if(isset($_POST['submit'])) {
           </div>
           <div>
           <label>COUNTRY:</label>
-          <select name="country" id="country" class="form-control demo">
+          <select name="country" id="country" class="form-control demo" >
             <option value="">--SELECT COUNTRY--</option>
-            
-            <option value="India">India</option>
-            <option value="Japan">Japan</option>
-            <option value="United States of America">United States of America</option>
-            <option value="South Korean">South Korean</option>
-            <option value="Germany">Germany</option>
-            <option value="China">China</option>
-            <option value="England">England</option>
-            <option value="Canada">Canada</option>
-            <option value="Sweden">Sweden</option>
-            <option value="Kerala">Kerala</option>
-            <option value="Australia">Maharashtra</option>
-            <option value="Russia">Russia</option>
-            <option value="Finland">Finland</option>
-            <option value="Russia">Russia</option>
+
+            <?php foreach($countries as $country) {?>
+                <option value="<?php echo $country;?>"><?php echo $country;?></option>
+            <?php } ?>
           </select>
           <?php 
               if (isset($errors['country'])) {

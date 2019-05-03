@@ -1,0 +1,24 @@
+body {
+    /* background-color: rgba(168, 227, 238, 0.945); */
+    }
+.btn-default {
+    box-shadow: 1px 2px 5px #000000;   
+}
+.btn-default {
+    background: rgba(0, 0, 0, 0.918);
+    color: #fff;
+ }
+.btn-default:hover {
+    background: #fff;
+    color: rgb(204, 16, 16);
+ }
+ .error {color: rgb(255, 6, 6);}
+.demo{
+    clear: both;
+    float: left;
+}
+.label {
+    color:rgba(1, 20, 56, 0.918)
+}
+
+.input-radio{padding: 5px;}

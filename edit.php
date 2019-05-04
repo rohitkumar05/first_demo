@@ -29,7 +29,7 @@ $states = $commonFunction->stateList();
 <center>
 <div class="container">
 <div class="col-md-12">
-<form action=""  method="POST" id="myformedit" novalidate>
+<form action=""  method="POST" id="form" novalidate>
 
   <div class="col-md-8 col-md-offset-2">
       

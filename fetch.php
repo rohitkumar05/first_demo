@@ -6,14 +6,15 @@ $commonFunction = new CommonFunction;
 $commonFunction->redrectToLogin();
 
 
-
-
 require_once('./common_files/database_queries.php');
-
 $dbQueries = new DbQueries;
-
 $result = $dbQueries->fetch_users();
    // echo '<pre>'; print_r($result);die;
+  
+   //require_once('./common_files/database_queries.php');
+    //$dbQueries1 = new DbQueries;
+    //$result1 = $dbQueries1->deleteData($id);
+    //echo '<pre>'; print_r($result1);die;
 ?>
 
 <?php include_once('./partials/header.php'); ?>

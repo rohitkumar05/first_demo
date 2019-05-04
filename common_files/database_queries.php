@@ -36,7 +36,7 @@ class DbQueries extends DbConnect
 
     public function getUser($id){
         $dog = "SELECT * FROM users WHERE id = '".$id."'"; 
-        $result=mysqli_query($this->conn,$dog);
+        $result = mysqli_query($this->conn,$dog);
         $row = mysqli_fetch_array($result);
         return $row;
     }
@@ -53,4 +53,14 @@ class DbQueries extends DbConnect
         }
         $this->conn->close();
     }
-}
+    
+
+   /* public function deleteData($id){
+        $sky = "DELETE FROM users WHERE id = '".$id."'";
+        //echo "<pre>"; print_r($sky); die;
+        $result1 = mysqli_query($this->conn,$sky);
+        // echo "<pre>"; print_r($sky); die;
+     }*/
+
+}    
+

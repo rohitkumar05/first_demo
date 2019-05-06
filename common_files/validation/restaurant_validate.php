@@ -14,10 +14,10 @@ class RestaurantValidation  {
         }
 
         if (empty($data['city'])){
-            $errors['address'] = "Please Enter City" ;
+            $errors['city'] = "Please Enter City" ;
         }
         if (empty($data['zip_code'])){
-            $error['zip_code'] = "Please Enter ZIP CODE";
+            $error['zip_code'] = "Please Enter ZIP CODE" ;
         }
         if (empty($data['state'])){
             $errors['state'] = "Please Enter State" ;
@@ -26,6 +26,7 @@ class RestaurantValidation  {
                 $errors['country'] = "Please Enter  Country" ;
             }
             return $errors;
+            //die($errors);
     }
 
 

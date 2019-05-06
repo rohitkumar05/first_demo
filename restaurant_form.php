@@ -14,6 +14,7 @@ if(isset($_POST['submit'])) {
         include_once('./common_files/database_queries.php');
         $dbQueries1 = new DbQueries;
         $dbQueries1->restaurantAdd($_POST);
+        
         }
     }
 
@@ -23,31 +24,67 @@ if(isset($_POST['submit'])) {
 
 <div class="container">
 <div class="col-md-12">
-<form action=""  method="POST" id="myrest123 " novalidate>
+<form action=""  method="POST" id="my   rest" novalidate>
   <div class="col-md-8 col-md-offset-2">
           <h1 style="color:black;"> ADD RESTAURANT </h1>
             <div class="form-group">
             <label> Name: </label>
             <input type="text" placeholder="ENTER NAME :" id="name"  name="name" class="form-control demo"/>
-            
+            <?php 
+              if (isset($errors['name'])) {
+                ?>
+                  <label><?php echo $errors['name'] ?></label>
+                <?php
+              }
+          ?>
           </div>
           <div>
               <label>PHONE NUMBER:</label>
               <input type="text" placeholder="ENTER PHONE NUMBER:" id="phone_number" name="phone_number" class="form-control demo"/>
+              <?php 
+              if (isset($errors['phone_number'])) {
+                ?>
+                  <label><?php echo $errors['phone_number'] ?></label>
+                <?php
+              }
+          ?>
          </div>
           <div>
               <label>ADDRESS:</label>
               <input type="text" placeholder="ENTER ADDRESS:" id="address" name="address"  class="form-control demo"/>
+              <?php 
+              if (isset($errors['address'])) {
+                ?>
+                  <label><?php echo $errors['address'] ?></label>
+                <?php
+              }
+          ?>
          </div>
          <div>
               <label>CITY:</label>
               <input type="text" placeholder="ENTER CITY:" id="city" name="city"  class="form-control demo"/>
+              <?php 
+              if (isset($errors['city'])) {
+                ?>
+                  <label><?php echo $errors['city'] ?></label>
+                <?php
+              }
+          ?>
          </div>
          <div>
-              <label>ZIP CODE:</label>
-              <input type="text" placeholder="ENTER ZIP CODE:" id="zip_code" name="zip_code"
-              class="form-control demo"/>
-         </div>
+          <label>ZIP CODE:</label>
+          <?php //die($result['zip_code']); ?>
+          <input type="text" placeholder="ENTER ZIP CODE" id="zip_code" 
+          name="zip_code" class="form-control demo" value="<?php echo $result['zip_code']?>"/>
+          <?php 
+              if (isset($errors['zip_code'])) {
+                ?>
+                
+                  <label><?php echo $errors['zip_code'] ?></label>
+                <?php
+              }
+          ?>
+          </div>
          <div>
           <label>STATE</label>
           <?php //die($result['state']); ?>
@@ -59,6 +96,13 @@ if(isset($_POST['submit'])) {
             <?php } ?>
             
              </select>
+             <?php 
+              if (isset($errors['state'])) {
+                ?>
+                  <label><?php echo $errors['state'] ?></label>
+                <?php
+              }
+          ?>
         </div>  
         <div>
           <label>COUNTRY:</label>
@@ -69,6 +113,13 @@ if(isset($_POST['submit'])) {
                 <option value="<?php echo $country;?>"><?php echo $country;?></option>
             <?php } ?>
           </select>
+          <?php 
+              if (isset($errors['country'])) {
+                ?>
+                  <label><?php echo $errors['country'] ?></label>
+                <?php
+              }
+          ?>
          </div>
          <div>
           <input type="submit" class="btn btn-success col-md-3 form-control  container form-control " value="SUBMIT" name="submit">

@@ -94,5 +94,41 @@ require_once('db_connect.php');
          return $errors;
       }
 
-   }
+
+      public function validate_edit_form($data){
+         $errors = [];
+         if (empty($data['first_name'])) {
+            $errors['first_name'] = "Please enter First Name" ;
+         }
+         if (empty($data['last_name'])) {
+            $errors['last_name'] = "Please enter Last Name" ;
+         }
+         if (empty($data['gender'])) {
+            $errors['gender'] = "Please enter gender" ;
+         }
+         if (empty($data['address'])) {
+            $errors['address'] = "Please enter address" ;
+         }
+         if (empty($data['phone_number'])) {
+            $errors['phone_number'] = "Please enter phone number" ;
+         }
+         if (empty($data['zip_code'])) {
+            $errors['zip_code'] = "Please enter zip code" ;
+         }
+
+         if (empty($data['city'])) {
+            $errors['city'] = "Please enter city" ;
+         }
+
+         if (empty($data['state'])) {
+            $errors['state'] = "Please enter state" ;
+         }
+
+         if (empty($data['country'])) {
+            $errors['country'] = "Please enter state" ;
+         }
+         return $errors;
+      }
+ }
+      
 ?>

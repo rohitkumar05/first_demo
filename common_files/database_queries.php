@@ -1,10 +1,15 @@
 <?php
+session_start();
 require_once('db_connect.php');
 class DbQueries extends DbConnect
 {
     public function saveUser($userData, $encrypted_password) {
-        $sql="insert into users(first_name,last_name,email,password,gender,address,phone_number,zip_code,city,state,country)
-        values('".$userData['first_name']."','".$userData['last_name']."','".$userData['email']."','$encrypted_password','".$userData['gender']."','".$userData['address']."','".$userData['phone_number']."','".$userData['zip_code']."','".$userData['city']."','".$userData['state']."','".$userData['country']."')";
+        $sql="insert into users(first_name,last_name,email,password,gender,address,phone_number,
+        zip_code,city,state,country)
+        values('".$userData['first_name']."','".$userData['last_name']."',
+        '".$userData['email']."','$encrypted_password','".$userData['gender']."',
+        '".$userData['address']."','".$userData['phone_number']."','".$userData['zip_code']."',
+        '".$userData['city']."','".$userData['state']."','".$userData['country']."')";
 
         if ($this->conn->query($sql) === TRUE) {
             echo "New record created successfully";
@@ -55,12 +60,28 @@ class DbQueries extends DbConnect
     }
     
 
-   /* public function deleteData($id){
+    public function deleteData($id){
         $sky = "DELETE FROM users WHERE id = '".$id."'";
         //echo "<pre>"; print_r($sky); die;
         $result1 = mysqli_query($this->conn,$sky);
         // echo "<pre>"; print_r($sky); die;
-     }*/
+     }
 
+     public function restaurantAdd($restaurantData){
+        //  die("hgfgasdgha");
+         //echo '<pre>'; print_r($restaurantData);die;
+
+         $user_id = $_SESSION['user']['id'];
+         $sql= "Insert into restaurants(user_id, name, address, phone_number, city, zip_code, state, country) values ($user_id, '".$restaurantData['name']."', '".$restaurantData['address']."', '".$restaurantData['phone_number']."', '".$restaurantData['city']."', '".$restaurantData['zip_code']."', '".$restaurantData['state']."', '".$restaurantData['country']."')";
+         if ($this->conn->query($sql) === TRUE) {
+            echo "New record created successfully";
+        } else {
+            echo "Error: " . $sql . "<br>" . $this->conn->error;
+        }
+
+        $this->conn->close();
+
+    }
+    
 }    
 

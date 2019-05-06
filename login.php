@@ -2,11 +2,10 @@
 session_start();
 if ($_POST['submit']) {
     //Code block to validate fields
-    require_once('./common_files/validate.php');
+    require_once('./common_files/validation/validate.php');
     $validate = new Validations();
     $errors = $validate->validate_login_form($_POST);
     
-
     if (empty($errors)) {
         require_once('./common_files/database_queries.php');
         require_once('./common_files/common_function.php');

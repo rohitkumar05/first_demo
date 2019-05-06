@@ -1,6 +1,6 @@
 <!---------START SUBMIT------------>
 <?php
-include_once('./common_files/validate.php');
+include_once('./common_files/validation/validate.php');
 include_once('./common_files/common_function.php');
 include_once('./common_files/database_queries.php');
 if(isset($_POST['submit'])) {
@@ -8,18 +8,17 @@ if(isset($_POST['submit'])) {
   $errors  = $validation->validate_user_form($_POST);
   if (count($errors) == 0) {
     $common_function = new CommonFunction;
-        
     $encrypted_password = $common_function->encrypt_our_password($_POST['password']);
     $dbQueries = new DbQueries;
     $dbQueries->saveUser($_POST, $encrypted_password);
   }
 
-
+  $commonFunction = new CommonFunction;
+  $countries = $commonFunction->countryList();
+  $states = $commonFunction->stateList();
+  //echo '<pre>'; print_r($states);die;  
 }
-$commonFunction = new CommonFunction;
-$countries = $commonFunction->countryList();
-$states = $commonFunction->stateList();
-//echo '<pre>'; print_r($states);die;
+
 ?>
 
 <!------------submit  end------------->
@@ -38,15 +37,15 @@ $states = $commonFunction->stateList();
           <h1 style="color:black;"> USER  REGISTRATION</h1>
 
           <div class="form-group">
-          <label>First Name: </label>
-          <input type="text" placeholder="ENTER FIRST NAME :" id="first_name"  name="first_name" class="form-control demo"/>
-          <?php 
-              if (isset($errors['first_name'])) {
+            <label>First Name: </label>
+            <input type="text" placeholder="ENTER FIRST NAME :" id="first_name"  name="first_name" class="form-control demo"/>
+                <?php 
+                    if (isset($errors['first_name'])) {
+                      ?>
+                        <label><?php echo $errors['first_name'] ?></label>
+                      <?php
+                    }
                 ?>
-                  <label><?php echo $errors['first_name'] ?></label>
-                <?php
-              }
-          ?>
 
 
           </div>

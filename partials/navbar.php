@@ -6,7 +6,7 @@
     <ul class="nav navbar-nav">
       <li class="active"><a href="#">Home</a></li>
       <li><a href="fetch.php">fetch</a></li>
-      <li><a href="fetch.php">DELETE</a></li>
+      <li><a href="restaurant_form.php">ADD RESTAURANT</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
         <?php

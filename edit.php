@@ -1,5 +1,7 @@
 
 <?php
+      
+      
 session_start();
 require_once('./common_files/common_function.php');
 $commonFunction = new CommonFunction;
@@ -11,11 +13,16 @@ $dbQueries = new DbQueries;
 $result = $dbQueries->getUser($_GET["id"]);
 
 if(isset($_POST['submit'])) {
+    include_once('./common_files/validation/validate.php');
+    $validate1 = new Validations();
+    $errors = $validate1->validate_edit_form($_POST);
     
-    $dbQueries = new DbQueries;
-    $dbQueries->saveEdit($_POST);
-    $dbQueries1 = new DbQueries;
-    $result = $dbQueries1->getUser($_POST["id"]);
+    if (count($errors) == 0) {
+        $dbQueries = new DbQueries;
+        $dbQueries->saveEdit($_POST);
+        $dbQueries1 = new DbQueries;
+        $result = $dbQueries1->getUser($_POST["id"]);
+    }
 }
 
 
@@ -29,7 +36,7 @@ $states = $commonFunction->stateList();
 <center>
 <div class="container">
 <div class="col-md-12">
-<form action=""  method="POST" id="form" novalidate>
+<form action=""  method="POST" id="myedit" novalidate>
 
   <div class="col-md-8 col-md-offset-2">
       
@@ -193,4 +200,8 @@ $states = $commonFunction->stateList();
 </div>
 
 
-<?php include_once('./partials/footer.php'); 
+
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+<script src="http://localhost/first_demo/assets/js/user_validation.js"></script>
+<?php include_once('./partials/footer.php'); ?>

@@ -1,6 +1,9 @@
 <?php
+session_start();
 include_once('./common_files/common_function.php');
 $commonFunction = new CommonFunction;
+
+$commonFunction->redrectToLogin();
 $countries = $commonFunction->countryList();
 $states = $commonFunction->stateList();
 
@@ -24,7 +27,7 @@ if(isset($_POST['submit'])) {
 
 <div class="container">
 <div class="col-md-12">
-<form action=""  method="POST" id="my   rest" novalidate>
+<form action=""  method="POST" id="myrest" novalidate>
   <div class="col-md-8 col-md-offset-2">
           <h1 style="color:black;"> ADD RESTAURANT </h1>
             <div class="form-group">

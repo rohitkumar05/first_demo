@@ -14,12 +14,11 @@ if(isset($_GET) && $_GET['method'] == 'delete') {
 } 
 
 
-$dbQueries = new DbQueries;
-$result = $dbQueries->fetch_users();
-   // echo '<pre>'; print_r($result);die;
-  
+            $dbQueries = new DbQueries;
+            $result = $dbQueries->fetch_users();
+            //echo '<pre>'; print_r($result);die;
    
-    //echo '<pre>'; print_r($result1);die;
+            //echo '<pre>'; print_r($result1);die;
 ?>
 
 <?php include_once('./partials/header.php'); ?>
@@ -53,8 +52,7 @@ $result = $dbQueries->fetch_users();
         
             <tr>
                     <td><?php echo $row['first_name'];?></td>
-                    <td><?php echo $row['last_name'];?></td>
-                    
+                    <td><?php echo $row['last_name'];?></td>    
                     <td><?php echo $row['gender'];?></td>
                     <td><?php echo $row['address'];?></td>
                     <td><?php echo $row['phone_number'];?></td>

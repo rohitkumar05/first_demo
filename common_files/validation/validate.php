@@ -1,5 +1,5 @@
 <?php
-require_once('db_connect.php');
+include_once('common_files/db_connect.php');
 
    class Validations extends DbConnect {
       

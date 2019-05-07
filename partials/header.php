@@ -24,6 +24,5 @@
 <body>
 <?php include_once('./partials/navbar.php'); ?>
 <div class="container">
-
 <center>
 <img src="http://localhost/first_demo/partials/images.png" class="mx-auto d-block" style="width:10%"> 

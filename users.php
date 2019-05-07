@@ -1,5 +1,5 @@
-<!---------START SUBMIT------------>
 <?php
+
 include_once('./common_files/validation/validate.php');
 include_once('./common_files/common_function.php');
 include_once('./common_files/database_queries.php');
@@ -13,15 +13,15 @@ if(isset($_POST['submit'])) {
     $dbQueries->saveUser($_POST, $encrypted_password);
   }
 
-  $commonFunction = new CommonFunction;
-  $countries = $commonFunction->countryList();
-  $states = $commonFunction->stateList();
-  //echo '<pre>'; print_r($states);die;  
+  
 }
-
+$commonFunction = new CommonFunction;
+$countries = $commonFunction->countryList();
+$states = $commonFunction->stateList();
+//echo '<pre>'; print_r($states);die;
 ?>
 
-<!------------submit  end------------->
+
 
 
 

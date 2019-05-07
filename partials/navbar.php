@@ -7,6 +7,7 @@
       <li class="active"><a href="#">Home</a></li>
       <li><a href="fetch.php">fetch</a></li>
       <li><a href="restaurant_form.php">ADD RESTAURANT</a></li>
+      <li><a href="restaurant_listing.php">fetch RESTAURANT</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
         <?php

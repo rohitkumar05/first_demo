@@ -1,21 +1,35 @@
 <?php
 require_once('./common_files/database_queries.php');
 $dbQueries = new DbQueries;
+
+
+if(isset($_POST['submit'])) {
+
+ $dbQueries1 = new DbQueries;
+ $dbQueries1->editRestaurant($_POST);
+}
 $result2 = $dbQueries->getRestaurant($_GET["id"]);
+
+if(isset($_POST['submit'])){
+include_once('./common_files/validation/restaurant_validate.php');
+ $restaurantValidation2 = new RestaurantValidation();
+ $errors = $restaurantValidation2->editRestaurant($_POST);
+}
+
+
+
 
 require_once('./common_files/common_function.php');
 $commonFunction = new CommonFunction;
 $countries = $commonFunction->countryList();
 $states = $commonFunction->stateList();
 
-require_once('./common_files/database_queries.php');
-$dbQueries = new DbQueries;
-$dbQueries->editRestaurant($_POST);
+
 ?>
 <?php include_once('./partials/header.php'); ?>
 <div class="container">
 <div class="col-md-12">
-<form action=""  method="POST" id="king" novalidate>
+<form action=""  method="POST" id="kingResturant" novalidate>
 
   <div class="col-md-8 col-md-offset-2">
       
@@ -23,7 +37,7 @@ $dbQueries->editRestaurant($_POST);
             <input type="hidden" name="id" value="<?php echo $result2['id']?>"/>
           <div class="form-group">
           <label>Name: </label>
-          <input type="text" placeholder="ENTER FIRST NAME :" id="name"  name="name" class="form-control demo" value="<?php echo $result2['name']?>"/>
+          <input type="text" placeholder="ENTER FIRST NAME :" id="name"   name="name" class="form-control demo" value="<?php echo $result2['name']?>"/>
           <?php 
               if (isset($errors['name'])) {
                 ?>
@@ -86,38 +100,31 @@ $dbQueries->editRestaurant($_POST);
 
 
           <div>
-          <label>STATE</label>
-          <?php //die($result['state']); ?>
-          <select name="state"  id="state" class=" form-control demo" value="<?php echo $result['state']?>">
-            <option value="">--SELECT STATE--</option>
-            <?php foreach($states as $state) {?>
-                <option value="<?php echo $state;?>" <?php if ($state == $result2['state']) echo "selected" ?>>
-                <?php echo $state;?></option>
-            <?php } ?>
-            
-             </select>
-          <?php 
-              if (isset($errors['state'])) {
-                ?>
-                  <label><?php echo $errors['state'] ?></label>
-                <?php
-              }
-          ?>
-          </div>
-          <?php 
-              if (isset($errors['state'])) {
-                ?>
-                  <label><?php echo $errors['state'] ?></label>
-                <?php
-              }
-                ?>
+                      <label>state:</label>
+                      <select name="state" id="state" class=" form-control demo" >
+                        <option value="">--SELECT state--</option>
+
+                        <?php foreach($states as $state) {?>
+                            <option value="<?php echo $state;?>" <?php if ($state == $result2['state']) echo "selected" ?>>
+                            <?php echo $state;?></option>
+                        <?php } ?>
+                        
+                        </select>
+                      <?php 
+                          if (isset($errors['state'])) {
+                            ?>
+                              <label><?php echo $errors['state'] ?></label>
+                            <?php
+                          }
+                      ?>
+                      </div>
                   <div>
                       <label>COUNTRY:</label>
                       <select name="country" id="country" class=" form-control demo" >
                         <option value="">--SELECT COUNTRY--</option>
 
                         <?php foreach($countries as $country) {?>
-                            <option value="<?php echo $country;?>" <?php if ($country == $result['country']) echo "selected" ?>>
+                            <option value="<?php echo $country;?>" <?php if ($country == $result2['country']) echo "selected" ?>>
                             <?php echo $country;?></option>
                         <?php } ?>
                         

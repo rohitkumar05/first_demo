@@ -48,7 +48,7 @@ $(document).ready(function() {
         }
     });
 
-    $( "#king" ).validate({
+    $( "#kingResturant" ).validate({
         rules: {
             name: {
               required: true,
@@ -73,7 +73,7 @@ $(document).ready(function() {
                 },
             },
             messages: {
-                
+
                 name: {
                     required: "NAME IS REQUIRED",
                 },

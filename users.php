@@ -12,18 +12,11 @@ if(isset($_POST['submit'])) {
     $dbQueries = new DbQueries;
     $dbQueries->saveUser($_POST, $encrypted_password);
   }
-
-  
 }
 $commonFunction = new CommonFunction;
 $countries = $commonFunction->countryList();
 $states = $commonFunction->stateList();
-//echo '<pre>'; print_r($states);die;
 ?>
-
-
-
-
 
 
 <?php include_once('./partials/header.php'); ?>

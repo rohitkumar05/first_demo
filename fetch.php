@@ -23,9 +23,11 @@ if(isset($_GET) && $_GET['method'] == 'delete') {
 
 <?php include_once('./partials/header.php'); ?>
 
+
     <center>
     <div class="container">
     <!-- <form action=""  method="POST"> -->
+    <a href="users.php" class="btn btn-success" style="float:right; margin-bottom:10px;">Add User</a>
     <table id="example" class="display" style="width:100%">
               
       <div class="form-group">

@@ -20,7 +20,7 @@ class DbQueries extends DbConnect
         $this->conn->close();
 
     }
-
+    
 
     public function login_user($data, $commfun) {
         $encyypted_password = $commfun->encrypt_our_password($data['password']);
@@ -31,6 +31,7 @@ class DbQueries extends DbConnect
         $rows = mysqli_fetch_array($result);
         return $rows;
     }
+    
 
     public function fetch_users(){
         $sql = "SELECT * FROM users ";
@@ -101,6 +102,34 @@ class DbQueries extends DbConnect
 
     }
 
+    public function userReset($users){
+         //$user_id = $_SESSION['email']['password'];
+       // $sql="SELECT * FROM users WHERE id = '".$_SESSION[$id]."'"; 
+       // echo "<pre>"; print_r($sql);
+         if ($this->conn->query($sql) === TRUE) {
+            echo "New record created successfully";
+        } else {
+            echo "Error: " . $sql . "<br>" . $this->conn->error;
+        }
+    }
+
+    
+
+
+
+     public function resetPassword($data,$commFun){
+         //echo "<pre>"; print_r($data);die;
+           $encrypted_Password = $commFun->encrypt_our_password($data['new_password']);
+          // echo "<pre>"; print_r($_SESSION); die("rohit");
+            $spy ="UPDATE users SET password ='".$encrypted_Password."' where id = '".$_SESSION['user']['id']."'";       
+            // echo"<pre>"; print_r($spy); die;
+            if ($this->conn->query($spy) === TRUE) {
+                echo "Record updated successfully";
+            } else {
+                echo "Error updating record: " . $this->conn->error;
+            }
+            $this->conn->close();
+                }
      public function restaurantAdd($restaurantData){
         //  die("hgfgasdgha");
          //echo '<pre>'; print_r($restaurantData);die;
@@ -116,6 +145,7 @@ class DbQueries extends DbConnect
         $this->conn->close();
 
     }
+
     
 }    
 

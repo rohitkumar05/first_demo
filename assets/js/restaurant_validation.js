@@ -97,5 +97,32 @@ $(document).ready(function() {
                 },
             }
         });
+        $( "#reset" ).validate({
+            rules: {
+                current_password: {
+                  required: true,
+                },
+                new_password: {
+                    required:true,
+                },
+                retype_password:{
+                    required:true,
+                    equalTo: "#new_password"
+                 },
+             },
+                messages: {
+
+                    current_password: {
+                        required: "PASSWORD REQUIRED",
+                    },
+                    new_password:{
+                        required: "NEW PASSWORD IS REQUIRED",
+                    },
+                    retype_password:{
+                        required: "RETYPE PASSWORD IS REQUIRED",
+                        equalTo: "RETYPE PASSWORD IS NOT MATCH",
+                    },
+                },
+     });
 });
     

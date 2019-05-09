@@ -14,7 +14,6 @@ include_once('common_files/db_connect.php');
            return false;
          }
       }
-
       
       public function validate_user_form($data) {
 
@@ -128,6 +127,48 @@ include_once('common_files/db_connect.php');
             $errors['country'] = "Please enter state" ;
          }
          return $errors;
+      }
+
+
+      public function resetValidatePassword($data, $commanFunction){
+         $errors = [];
+         if (empty($data['current_password'])){
+             $errors['current_password'] = "ENTER CURRENT PASSWORD" ;
+         } 
+         if (empty($data['new_password'])) {
+            $errors['new_password'] = "Please enter confirm password" ;
+         }
+         if (empty($data['retype_password'])) {
+            $errors['retype_password'] = "Please enter confirm password" ;
+         }
+
+         if (!empty($data['new_password']) && !empty($data['retype_password'])) {
+            if (strcmp($data['new_password'], $data['retype_password']) != 0) {
+                $errors['retype_password'] = "Password and confirm password do not match" ;
+            }
+
+            $encryptedPassword = $commanFunction->encrypt_our_password($data['current_password']);
+            
+            if (!$this->validatePassword($encryptedPassword)) {
+               $errors['current_password']= "Current password is wrong. Please try again.";
+            }
+
+         }
+
+         // echo "<pre>"; print_r($errors); die;
+         return $errors;
+         
+      }
+
+      private function validatePassword($encryptedPassword) {
+         $sql = "Select * from users where email = '". $_SESSION['user']['email']. "' and password = '".$encryptedPassword."'";
+         $result=mysqli_query($this->conn,$sql);
+         $rows = mysqli_num_rows($result);
+         if ($rows > 0) {
+           return true;  
+         } else {
+           return false;
+         }
       }
  }
       

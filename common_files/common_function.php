@@ -28,21 +28,18 @@ class CommonFunction {
     }
     
     public function redrectToLogin(){ 
-
         if (empty($_SESSION)) {
          header('Location: http://localhost/first_demo/login.php');
         }
             
     }
     public function countryList() {
-        // die("hi");
         $countries = ["India", "Japan", "United States of America", "South Korean", "Germany", "China", 
         "England", "Canada", "Sweden", "Kerala", "Australia", "Russia", "Finland"];
         return $countries;
     }
 
     public function stateList(){
-        //die(fdsf);
         $states =["Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh", "Goa", "Gujarat",
         "Haryana", "Himachal Pradesh", "Jammu & Kashmir", "Jharkhand", "Karnataka", "Kerala", "Maharashtra"];
         return $states;

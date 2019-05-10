@@ -3,7 +3,6 @@ class CommonFunction {
 
 
     public function encrypt_our_password($password) {
-        // echo "I m here";die;
         return hash('sha256', $password);
     }
 
@@ -29,10 +28,11 @@ class CommonFunction {
     
     public function redrectToLogin(){ 
         if (empty($_SESSION)) {
-         header('Location: http://localhost/first_demo/login.php');
+            header('Location: http://localhost/first_demo/login.php');
         }
             
     }
+
     public function countryList() {
         $countries = ["India", "Japan", "United States of America", "South Korean", "Germany", "China", 
         "England", "Canada", "Sweden", "Kerala", "Australia", "Russia", "Finland"];

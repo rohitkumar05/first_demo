@@ -27,7 +27,7 @@ if(isset($_GET) && $_GET['method'] == 'delete') {
     <center>
     <div class="container">
     <!-- <form action=""  method="POST"> -->
-    <a href="users.php" class="btn btn-success" style="float:right; margin-bottom:10px;">Add User</a>
+    <a href="users.php" class="btn btn-success" style="float:right; margin-bottom:10px; ">Add User</a>
     <table id="example" class="display" style="width:100%">
               
       <div class="form-group">
@@ -62,8 +62,8 @@ if(isset($_GET) && $_GET['method'] == 'delete') {
                     <td><?php echo $row['city'];?></td>
                     <td><?php echo $row['state'];?></td>
                     <td><?php echo $row['country'];?></td>
-                    <td><a href="edit.php?id=<?php echo $row['id']?>">EDIT</a></td>
-                    <td><a href="fetch.php?id=<?php echo $row['id']?>&method=delete">DELETE</a> </td>
+                    <td><a href="edit.php?id=<?php echo $row['id']?>"><button onclick="return confirm('Are you sure to Edit this record?')">EDIT</a></td>
+                    <td><a href="fetch.php?id=<?php echo $row['id']?>&method=delete"><button onclick="return confirm('Are you sure to delete this record?')">DELETE</button></a> </td>
         </tr>
 
         <?php } ?>

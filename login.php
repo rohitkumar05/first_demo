@@ -1,7 +1,7 @@
 <?php
 session_start();
 if ($_POST['submit']) {
-    //Code block to validate fields
+    
     require_once('./common_files/validation/validate.php');
     $validate = new Validations();
     $errors = $validate->validate_login_form($_POST);

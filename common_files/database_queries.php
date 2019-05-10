@@ -79,7 +79,7 @@ class DbQueries extends DbConnect
     
     public function editRestaurant($done){
         $sql = "UPDATE restaurants SET name='".$done['name']."',phone_number='".$done['phone_number']."',address='".$done['address']."',city='".$done['city']."',zip_code='".$done['zip_code']."',state='".$done['country']."' WHERE id=". $done['id'];
-        //echo "<pre>"; print_r($sql); die;
+       
         if ($this->conn->query($sql) === TRUE) {
             echo "Record updated successfully";
         } else {
@@ -91,9 +91,9 @@ class DbQueries extends DbConnect
 
     public function deleteData($id){
         $sky = "DELETE FROM users WHERE id = '".$id."'";
-        //echo "<pre>"; print_r($sky); die;
+       
         $result1 = mysqli_query($this->conn,$sky);
-        // echo "<pre>"; print_r($sky); die;
+      
      }
 
     public function deleteRestaurant($id){
@@ -103,9 +103,7 @@ class DbQueries extends DbConnect
     }
 
     public function userReset($users){
-         //$user_id = $_SESSION['email']['password'];
-       // $sql="SELECT * FROM users WHERE id = '".$_SESSION[$id]."'"; 
-       // echo "<pre>"; print_r($sql);
+        
          if ($this->conn->query($sql) === TRUE) {
             echo "New record created successfully";
         } else {
@@ -118,11 +116,11 @@ class DbQueries extends DbConnect
 
 
      public function resetPassword($data,$commFun){
-         //echo "<pre>"; print_r($data);die;
+            
            $encrypted_Password = $commFun->encrypt_our_password($data['new_password']);
-          // echo "<pre>"; print_r($_SESSION); die("rohit");
+          
             $spy ="UPDATE users SET password ='".$encrypted_Password."' where id = '".$_SESSION['user']['id']."'";       
-            // echo"<pre>"; print_r($spy); die;
+       
             if ($this->conn->query($spy) === TRUE) {
                 echo "Record updated successfully";
             } else {
@@ -131,8 +129,7 @@ class DbQueries extends DbConnect
             $this->conn->close();
                 }
      public function restaurantAdd($restaurantData){
-        //  die("hgfgasdgha");
-         //echo '<pre>'; print_r($restaurantData);die;
+       
 
          $user_id = $_SESSION['user']['id'];
          $sql= "Insert into restaurants(user_id, name, address, phone_number, city, zip_code, state, country) values ($user_id, '".$restaurantData['name']."', '".$restaurantData['address']."', '".$restaurantData['phone_number']."', '".$restaurantData['city']."', '".$restaurantData['zip_code']."', '".$restaurantData['state']."', '".$restaurantData['country']."')";

@@ -131,6 +131,7 @@ include_once('common_files/db_connect.php');
 
 
       public function resetValidatePassword($data, $commanFunction){
+         // echo "<pre>"; print_r($commanFunction); die;
          $errors = [];
          if (empty($data['current_password'])){
              $errors['current_password'] = "ENTER CURRENT PASSWORD" ;
@@ -153,12 +154,15 @@ include_once('common_files/db_connect.php');
                $errors['current_password']= "Current password is wrong. Please try again.";
             }
 
-         }
+      
 
-         // echo "<pre>"; print_r($errors); die;
-         return $errors;
+          
          
+         }
+         //echo "<pre>"; print_r($errors); die;
+         return $errors;
       }
+
 
       private function validatePassword($encryptedPassword) {
          $sql = "Select * from users where email = '". $_SESSION['user']['email']. "' and password = '".$encryptedPassword."'";

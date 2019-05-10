@@ -24,6 +24,8 @@ $commonFunction->redrectToLogin()
 <center>
     <div class="container">
     <!-- <form action=""  method="POST"> -->
+    <a href="restaurant_form.php" class="btn btn-success" style="float:right; margin-bottom:10px; ">Add Restaurant</a>
+    
     <table id="example" class="display" style="width:100%">
               
       <div class="form-group">
@@ -53,8 +55,8 @@ $commonFunction->redrectToLogin()
                     <td><?php echo $row['zip_code'];?></td>
                     <td><?php echo $row['state'];?></td>
                     <td><?php echo $row['country'];?></td>
-                    <td><a href="edit_restaurant.php?id=<?php echo $row['id']?>">EDIT</a></td>
-                    <td><a href="restaurant_listing.php?id=<?php echo $row['id']?>&method=delete">DELETE</a> </td>
+                    <td><a href="edit_restaurant.php?id=<?php echo $row['id']?>"><button onclick="return confirm('Are you sure to Edit this record?')">EDIT</a></td>
+                    <td><a href="restaurant_listing.php?id=<?php echo $row['id']?>&method=delete"><button onclick="return confirm('Are you sure to delete this record?')">DELETE</a> </td>
         </tr>
 
         <?php } ?>

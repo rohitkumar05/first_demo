@@ -19,7 +19,7 @@ $states = $commonFunction->stateList();
 ?>
 
 
-<?php include_once('./partials/header.php'); ?>
+<?php include_once('./partials/header.php'); ?> 
 <center>
 <div class="container">
 <div class="col-md-12">

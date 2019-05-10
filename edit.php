@@ -1,7 +1,5 @@
 
 <?php
-      
-      
 session_start();
 require_once('./common_files/common_function.php');
 $commonFunction = new CommonFunction;

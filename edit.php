@@ -1,4 +1,3 @@
-
 <?php
 session_start();
 require_once('./common_files/common_function.php');
@@ -22,8 +21,6 @@ if(isset($_POST['submit'])) {
         $result = $dbQueries1->getUser($_POST["id"]);
     }
 }
-
-
 $countries = $commonFunction->countryList();
 $states = $commonFunction->stateList();
 //echo '<pre>'; print_r($states);die;

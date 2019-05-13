@@ -9,11 +9,11 @@ session_start();
   $validation1 = new Validations;
   $common_function = new CommonFunction;
   $errors  = $validation1->resetValidatePassword($_POST,$common_function);
-  //die("rohit");
+  
   if (count($errors) == 0) {
     
     $encrypted_password = $common_function->encrypt_our_password($_POST['current_password']);
-    //die("rohit");
+   
     $dbQueries = new DbQueries;
   $dbQueries-> resetPassword($_POST,$common_function);
   }
@@ -21,14 +21,12 @@ session_start();
 }
   ?>
 
-
-
-
+  
 <?php include_once('./partials/header.php'); ?> 
 <center>
 <div class="container">
 <div class="col-md-12">
-<form action=""  method="POST" id="r eset" novalidate>
+<form action=""  method="POST" id="reset" novalidate>
 
   <div class="col-md-8 col-md-offset-2">
       

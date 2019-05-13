@@ -44,6 +44,10 @@ class CommonFunction {
         "Haryana", "Himachal Pradesh", "Jammu & Kashmir", "Jharkhand", "Karnataka", "Kerala", "Maharashtra"];
         return $states;
     }
+    public function itemList(){
+        $categories =["Veg","Non-Veg","Fast-Food"];
+        return $categories;
+    }
 }
 
 ?>

@@ -1,16 +1,27 @@
 <?php
 require_once('./common_files/database_queries.php');
 include_once('./common_files/common_function.php');
-$dbQueries = new DbQueries;
-$result = $dbQueries->getIds($_GET["id"]);
 
 $commonFunction1 = new CommonFunction;
-$categories = $commonFunction1->itemList();
+        $categories = $commonFunction1->itemList();
+
+        $dbQueries = new DbQueries;
+        $result = $dbQueries->getItem($_GET["id"]);
 if(isset($_POST['submit'])) {
-  
-$dbQueries->editSave($_POST);
-$result = $dbQueries1->getIds($_POST["id"]);
+
+      include_once('./common_files/validation/menu_validate.php');
+      $idemValidation = new IdemValidation();
+      $errors = $idemValidation->editValidate($_POST);
+      if (count($errors) == 0) {
+        $dbQueries = new DbQueries;
+        $dbQueries->editSave($_POST);
+        $result = $dbQueries->getItem($_POST["id"]);
+    
+          }
+
 }
+        
+        
 ?>
 
 
@@ -35,6 +46,7 @@ $result = $dbQueries1->getIds($_POST["id"]);
               }
           ?>
         </div>
+        <br>
           <div class="form-group">
           <label>Price: </label>
           <input type="text" placeholder="ENTER PRICE :" id="price"   name="price" class="form-control demo" value="<?php echo $result['price']?>"/>
@@ -45,7 +57,7 @@ $result = $dbQueries1->getIds($_POST["id"]);
                 <?php
               }
           ?>  
-       
+       <br>
         <label>category</label>
       
       <select name="category"  id="category" class=" form-control demo" value="<?php echo $result['category']?>">

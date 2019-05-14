@@ -2,34 +2,32 @@
 require_once('./common_files/database_queries.php');
 $dbQueries = new DbQueries;
 
+        if(isset($_POST['submit'])){
+            include_once('./common_files/validation/restaurant_validate.php');
+            $restaurantValidation2 = new RestaurantValidation();
+            $errors = $restaurantValidation2->editRestaurant($_POST);
+            if (count($errors) == 0) {
 
-if(isset($_POST['submit'])) {
-
- $dbQueries1 = new DbQueries;
- $dbQueries1->editRestaurant($_POST);
-}
-$result2 = $dbQueries->getRestaurant($_GET["id"]);
-
-if(isset($_POST['submit'])){
-include_once('./common_files/validation/restaurant_validate.php');
- $restaurantValidation2 = new RestaurantValidation();
- $errors = $restaurantValidation2->editRestaurant($_POST);
-}
+              $dbQueries1 = new DbQueries;
+              $dbQueries1->editRestaurant($_POST);
+            }  
+        }
 
 
 
+       $result2 = $dbQueries->getRestaurant($_GET["id"]);
 
-require_once('./common_files/common_function.php');
-$commonFunction = new CommonFunction;
-$countries = $commonFunction->countryList();
-$states = $commonFunction->stateList();
+        require_once('./common_files/common_function.php');
+        $commonFunction = new CommonFunction;
+        $countries = $commonFunction->countryList();
+        $states = $commonFunction->stateList();
 
 
 ?>
 <?php include_once('./partials/header.php'); ?>
 <div class="container">
 <div class="col-md-12">
-<form action=""  method="POST" id="kingResturant" novalidate>
+<form action=""  method="POST" id="kingRest urant" novalidate>
 
   <div class="col-md-8 col-md-offset-2">
       

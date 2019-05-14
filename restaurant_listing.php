@@ -55,8 +55,8 @@ $commonFunction->redrectToLogin()
                     <td><?php echo $row['zip_code'];?></td>
                     <td><?php echo $row['state'];?></td>
                     <td><?php echo $row['country'];?></td>
-                    <td><a href="item.php?id=<?php echo $row['id']?>"><button>Add Items</button></a></td>
-                    <td><a href="edit_restaurant.php?id=<?php echo $row['id']?>"><button onclick="return confirm('Are you sure to Edit this record?')">EDIT</a></td>
+                    <td><a href="item_listing.php?id=<?php echo $row['id']?>"><button>Food List</button></a></td>
+                    <td><a href="edit_restaurant.php?id=<?php echo $row['id']?>">EDIT</a></td>
                     <td><a href="restaurant_listing.php?id=<?php echo $row['id']?>&method=delete"><button onclick="return confirm('Are you sure to delete this record?')">DELETE</a> </td>
         </tr>
 

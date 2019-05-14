@@ -3,13 +3,15 @@
 include_once('./common_files/database_queries.php');
 include_once('./common_files/common_function.php');
 if(isset($_POST['submit'])) {
-    $dbQueries = new DbQueries;
-    $dbQueries->saveItem($_POST);
-    
-    // $result5 = $dbQueries->getId($_GET["id"]);
-   // die("rohoit");
-    //echo "<pre>"; print_r($result5); die;
+   include_once('./common_files/validation/menu_validate.php');
+   $idemValidation = new IdemValidation();
+   $errors = $idemValidation->menuValidate($_POST);
+    if (count($errors) == 0) {
+      $dbQueries = new DbQueries;
+      $dbQueries->saveItem($_POST);
+   }
 }
+
 $commonFunction1 = new CommonFunction;
 $categories = $commonFunction1->itemList();
 ?>
@@ -29,7 +31,9 @@ $categories = $commonFunction1->itemList();
             <input type="hidden" name="restaurant_id" value="<?php echo $_GET['id']?>"/>
           <div class="form-group">
           <label>Item Name: </label>
+          <br>
           <input type="text" placeholder="ENTER  NAME :" id="item_name"   name="item_name" class="form-control demo" value="<?php echo $result['item_name']?>"/>
+          
           <?php 
               if (isset($errors['item_name'])) {
                 ?>
@@ -38,8 +42,11 @@ $categories = $commonFunction1->itemList();
               }
           ?>
         </div>
+        <br>
           <div class="form-group">
+
           <label>Price: </label>
+          <br>
           <input type="text" placeholder="ENTER PRICE :" id="price"   name="price" class="form-control demo" value="<?php echo $result['price']?>"/>
           <?php 
               if (isset($errors['price'])) {
@@ -49,8 +56,10 @@ $categories = $commonFunction1->itemList();
               }
           ?>  
         </div>
+        <br>
           <div>
           <label>Categories</label>
+          <br>
           <select name="category" id="category" class="form-control demo" value="<?php echo $result['item_name']?>">
             <option value="">--SELECT Category--</option>
 
@@ -66,7 +75,9 @@ $categories = $commonFunction1->itemList();
                 <?php
               }
           ?>
-          
+
+          </div>
+          <br>
           <div>
           <input type="submit" class="btn btn-success col-md-3 form-control  container form-control " value="ADD ITEM" name="submit">
           </div>

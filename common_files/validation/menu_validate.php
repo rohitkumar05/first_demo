@@ -3,14 +3,14 @@
 class IdemValidation  {
         public function menuValidate($data){
         $errors = [];
-        if (empty($data['name'])) {
-        $errors['item_name'] = "Please enter Name" ;
+        if (empty($data['item_name'])) {
+        $errors['item_name'] = "Please Enter Item Name" ;
         }
         if (empty($data['price'])){
-        $errors['price'] = "Please Enter Phone Number" ;
+        $errors['price'] = "Please Enter Price" ;
         }
-        if (empty($data['categories'])){
-            $errors['categories'] = "Please Select  categories" ;
+        if (empty($data['category'])){
+            $errors['category'] = " Please Select Category" ;
         }
         return $errors;
             //die($errors);
@@ -18,14 +18,14 @@ class IdemValidation  {
 
     public function editValidate($data){
         $errors = [];
-        if (empty($data['name'])) {
-        $errors['item_name'] = "Please enter Name" ;
+        if (empty($data['item_name'])) {
+        $errors['item_name'] = "Please Enter Item Name" ;
         }
         if (empty($data['price'])){
-        $errors['price'] = "Please Enter Phone Number" ;
+        $errors['price'] = "Please Enter Price" ;
         }
         if (empty($data['category'])){
-            $errors['category'] = "Please SELECT categories" ;
+            $errors['category'] = "Please Select Category" ;
         }
         return $errors;
             //die($errors);

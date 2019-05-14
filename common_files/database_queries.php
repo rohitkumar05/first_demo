@@ -57,8 +57,9 @@ class DbQueries extends DbConnect
 
     } 
 
-    public function itemList(){
-        $sql = "SELECT * FROM menu";
+    public function itemList($red){
+        $sql = "SELECT * FROM menu WHERE restaurant_id=". $red;
+        // die($sql);
         $result3=mysqli_query($this->conn, $sql);
         return $result3;
 
@@ -67,7 +68,8 @@ class DbQueries extends DbConnect
     }
 
     public function restaurant_listing(){
-        $sql = "SELECT * FROM restaurants ";
+        $user_id = $_SESSION['user']['id'];
+        $sql = "SELECT * FROM restaurants WHERE user_id= ". $user_id;
         $result=mysqli_query($this->conn, $sql);
         return $result;
     }
@@ -90,14 +92,22 @@ class DbQueries extends DbConnect
     public function getRestaurant($id){ 
         $rest = "SELECT * FROM restaurants WHERE id = '".$id."'";
        
-        $result2 = mysqli_query($this->conn,$rest);
+        $result = mysqli_query($this->conn,$rest);
         
-        $row = mysqli_fetch_array($result2);
+        $row = mysqli_fetch_assoc($result);
        
         return $row; 
         
     }
-
+public function getItem($id){
+    
+    $sql = "SELECT * FROM menu WHERE id = '".$id."'";
+    $result1 = mysqli_query($this->conn,$sql);
+        
+    $row = mysqli_fetch_assoc($result1);
+    // echo "<pre>"; print_r($row); die;
+    return $row; 
+}
      
 
     public function saveEdit($abc){
@@ -117,7 +127,7 @@ class DbQueries extends DbConnect
     public function editSave($key){
         //echo "<pre>"; print_r($key); die;
         $sql = "UPDATE menu SET item_name='".$key['item_name']."',price='".$key['price']."',category='".$key['category']."' WHERE id=". $key['id'];
-       //echo "<pre>"; print_r($sql); die;
+       // echo "<pre>"; print_r($sql); die;
         
         
         if ($this->conn->query($sql) === TRUE) {
@@ -125,21 +135,21 @@ class DbQueries extends DbConnect
         } else {
             echo "Error updating record: " . $this->conn->error;
         }
-        $this->conn->close();
+        // $this->conn->close();
     }
 
 
 
 
     public function editRestaurant($done){
-        $sql = "UPDATE restaurants SET name='".$done['name']."',phone_number='".$done['phone_number']."',address='".$done['address']."',city='".$done['city']."',zip_code='".$done['zip_code']."',state='".$done['country']."' WHERE id=". $done['id'];
+        $sql = "UPDATE restaurants SET name='".$done['name']."', phone_number='".$done['phone_number']."', address='".$done['address']."', city='".$done['city']."', zip_code='".$done['zip_code']."', state='".$done['state']."', country='".$done['country']."' WHERE id=". $done['id'];
        
         if ($this->conn->query($sql) === TRUE) {
             echo "Record updated successfully";
         } else {
             echo "Error updating record: " . $this->conn->error;
         }
-        $this->conn->close();
+      
     }
     
 

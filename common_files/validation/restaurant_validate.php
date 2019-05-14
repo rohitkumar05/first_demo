@@ -21,8 +21,8 @@ class RestaurantValidation  {
         }
         if (empty($data['state'])){
             $errors['state'] = "Please Enter State" ;
-            }
-            if (empty($data['country'])){
+        }
+        if (empty($data['country'])){
                 $errors['country'] = "Please Enter  Country" ;
             }
             return $errors;

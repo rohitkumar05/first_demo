@@ -13,7 +13,7 @@ session_start();
   if (count($errors) == 0) {
     
     $encrypted_password = $common_function->encrypt_our_password($_POST['current_password']);
-   
+    
     $dbQueries = new DbQueries;
   $dbQueries-> resetPassword($_POST,$common_function);
   }
@@ -21,7 +21,7 @@ session_start();
 }
   ?>
 
-  
+
 <?php include_once('./partials/header.php'); ?> 
 <center>
 <div class="container">

@@ -18,11 +18,13 @@ $categories = $commonFunction1->itemList();
 <?php include_once('./partials/header.php'); ?> 
 
 <div class="container">
+
 <div class="col-md-12">
 <form action=""  method="POST" id="item" novalidate>
 
   <div class="col-md-8 col-md-offset-2">
-      
+  <a href="item_listing.php" class="btn btn-success" style="float:right; margin-bottom:10px; ">Food List</a>
+  
           <h1 style="color:black;">Add Items</h1>
             <input type="hidden" name="restaurant_id" value="<?php echo $_GET['id']?>"/>
           <div class="form-group">
@@ -64,7 +66,7 @@ $categories = $commonFunction1->itemList();
                 <?php
               }
           ?>
-          </div>
+          
           <div>
           <input type="submit" class="btn btn-success col-md-3 form-control  container form-control " value="ADD ITEM" name="submit">
           </div>

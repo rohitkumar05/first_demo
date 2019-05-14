@@ -21,7 +21,6 @@ class DbQueries extends DbConnect
 
     }
 
-
     public function saveItem($save){
         //echo "<pre>"; print_r($save); die;
         $user_id = $_SESSION['user']['id'];
@@ -80,6 +79,14 @@ class DbQueries extends DbConnect
         //echo "<pre>"; print_r($row); die;
         return $row;
     }
+   public function getIds($id){
+        $sql = "SELECT * FROM menu WHERE id = '".$id."'";
+        $result = mysqli_query($this->conn,$sql);
+        $row = mysqli_fetch_array($result);
+        //echo "<pre>"; print_r($row); die;
+        return $row;
+   }
+
     public function getRestaurant($id){ 
         $rest = "SELECT * FROM restaurants WHERE id = '".$id."'";
        
@@ -90,15 +97,11 @@ class DbQueries extends DbConnect
         return $row; 
         
     }
-     function getId($id){
-        $pop = "SELECT * FROM restaurants WHERE id = '".$id."'";
-        $result5 = mysqli_query($this->conn,$pop);
-        $row = mysqli_fetch_array($result5);
-       // echo "<pre>"; print_r($row); die;
-        return $row; 
-    }
+
+     
 
     public function saveEdit($abc){
+
         $sql = "UPDATE users SET first_name='".$abc['first_name']."',last_name='".$abc['last_name']."',
         gender='".$abc['gender']."',address='".$abc['address']."',phone_number='".$abc['phone_number']."',zip_code='".$abc['zip_code']."',
         city='".$abc['city']."',state='".$abc['state']."',country='".$abc['country']."'  WHERE id=". $abc['id'];
@@ -111,9 +114,12 @@ class DbQueries extends DbConnect
         $this->conn->close();
     }
     
-    public function editList($www){
-        $sql = "UPDATE menu SET item_name='".$www['item_name']."',price='".$www['price']."',category='".$www['category']."' WHERE id=". $www['id'];
-
+    public function editSave($key){
+        //echo "<pre>"; print_r($key); die;
+        $sql = "UPDATE menu SET item_name='".$key['item_name']."',price='".$key['price']."',category='".$key['category']."' WHERE id=". $key['id'];
+       //echo "<pre>"; print_r($sql); die;
+        
+        
         if ($this->conn->query($sql) === TRUE) {
             echo "Record updated successfully";
         } else {
@@ -147,7 +153,12 @@ class DbQueries extends DbConnect
     public function deleteRestaurant($id){
         $rose ="DELETE FROM restaurants WHERE id = '".$id."'";
         $result2 = mysqli_query($this->conn,$rose);
+        
+    }
 
+    public function deleteItem($id){
+        $csk ="DELETE FROM menu WHERE id = '".$id."'";
+        $result3 = mysqli_query($this->conn,$csk);
     }
 
     public function userReset($users){
@@ -176,9 +187,11 @@ class DbQueries extends DbConnect
             }
             $this->conn->close();
                 }
+
+
+
      public function restaurantAdd($restaurantData){
        
-
          $user_id = $_SESSION['user']['id'];
          $sql= "Insert into restaurants(user_id, name, address, phone_number, city, zip_code, state, country) values ($user_id, '".$restaurantData['name']."', '".$restaurantData['address']."', '".$restaurantData['phone_number']."', '".$restaurantData['city']."', '".$restaurantData['zip_code']."', '".$restaurantData['state']."', '".$restaurantData['country']."')";
          if ($this->conn->query($sql) === TRUE) {
@@ -193,4 +206,5 @@ class DbQueries extends DbConnect
 
     
 }    
+
 

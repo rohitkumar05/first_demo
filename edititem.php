@@ -1,21 +1,16 @@
 <?php
-include_once('./common_files/database_queries.php');
+require_once('./common_files/database_queries.php');
 include_once('./common_files/common_function.php');
+$dbQueries = new DbQueries;
+$result = $dbQueries->getIds($_GET["id"]);
+
+$commonFunction1 = new CommonFunction;
+$categories = $commonFunction1->itemList();
 if(isset($_POST['submit'])) {
-    $dbQueries = new DbQueries;
-    $dbQueries->saveItem($_POST);
-    
-
-    $dbQueries1 = new DbQueries;
-       $dbQueries1->editList($_POST);
-       
-       }
-
-       
-    $commonFunction1 = new CommonFunction;
-    $categories = $commonFunction1->itemList();
-
-
+  
+$dbQueries->editSave($_POST);
+$result = $dbQueries1->getIds($_POST["id"]);
+}
 ?>
 
 
@@ -28,7 +23,7 @@ if(isset($_POST['submit'])) {
   <div class="col-md-8 col-md-offset-2">
       
           <h1 style="color:black;">Add Items</h1>
-            <input type="hidden" name="restaurant_id" value="<?php echo $_GET['id']?>"/>
+            <input type="hidden" name="id" value="<?php echo $_GET['id']?>"/>
           <div class="form-group">
           <label>Item Name: </label>
           <input type="text" placeholder="ENTER  NAME :" id="item_name"   name="item_name" class="form-control demo" value="<?php echo $result['item_name']?>"/>
@@ -50,27 +45,36 @@ if(isset($_POST['submit'])) {
                 <?php
               }
           ?>  
-        </div>
-          <div>
-          <label>Categories</label>
-          <select name="category" id="category" class="form-control demo" value="<?php echo $result['item_name']?>">
-            <option value="">--SELECT Category--</option>
-
-            <?php foreach($categories as $category) {?>
-                <option value="<?php echo $category;?>"><?php echo $category;?></option>
-            <?php } ?>
+       
+        <label>category</label>
+      
+      <select name="category"  id="category" class=" form-control demo" value="<?php echo $result['category']?>">
+        <option value="">--SELECT category--</option>
+        <?php foreach($categories as $category) {?>
+            <option value="<?php echo $category;?>" <?php if ($category == $result['category']) echo "selected" ?>>
+            <?php echo $category;?></option>
+        <?php } ?>
+        
           </select>
-          
-          <?php 
-              if (isset($errors['category'])) {
-                ?>
-                  <label><?php echo $errors['category'] ?></label>
-                <?php
-              }
-          ?>
-          </div>
+      <?php 
+          if (isset($errors['category'])) {
+            ?>
+              <label><?php echo $errors['category'] ?></label>
+            <?php
+          }
+      ?>
+      </div>
+      <?php 
+          if (isset($errors['category'])) {
+            ?>
+              <label><?php echo $errors['category'] ?></label>
+            <?php
+          }
+            ?>
+              
+              
           <div>
-          <input type="submit" class="btn btn-success col-md-3 form-control  container form-control " value="ADD ITEM" name="submit">
+          <input type="submit" class="btn btn-success col-md-3 form-control  container form-control " value="SUBMIT" name="submit">
           </div>
 
 

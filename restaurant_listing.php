@@ -1,5 +1,10 @@
 <?php
 
+session_start();
+require_once('./common_files/common_function.php');
+$commonFunction = new CommonFunction;
+$commonFunction->redrectToLogin();
+
 require_once('./common_files/database_queries.php');
             
 $dbQueries = new DbQueries;
@@ -13,10 +18,7 @@ $result = $dbQueries->restaurant_listing();
         $dbQueries = new DbQueries;
             $result = $dbQueries->restaurant_listing();
 } 
-session_start();
-require_once('./common_files/common_function.php');
-$commonFunction = new CommonFunction;
-$commonFunction->redrectToLogin()
+
 
 ?>
 <?php include_once('./partials/header.php'); ?>

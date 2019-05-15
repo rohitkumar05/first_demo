@@ -1,5 +1,8 @@
 <?php
 session_start();
+require_once('./common_files/common_function.php');
+$commonFunction = new CommonFunction;
+$commonFunction->redrectToLogin();
   include_once('./common_files/database_queries.php');
   include_once('./common_files/validation/validate.php');
   require_once('./common_files/common_function.php');

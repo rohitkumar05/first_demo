@@ -19,12 +19,16 @@ class DbQueries extends DbConnect
 
         $this->conn->close();
 
-    }
+        
 
-    public function saveItem($save){
+    }
+     
+
+
+    public function saveItem($save,$img){
         //echo "<pre>"; print_r($save); die;
         $user_id = $_SESSION['user']['id'];
-        $sql="insert into menu(user_id,restaurant_id,item_name,price,category)values($user_id,'".$save['restaurant_id']."','".$save['item_name']."','".$save['price']."','".$save['category']."')";
+        $sql="insert into menu(user_id,restaurant_id,item_name,price,category,image)values($user_id,'".$save['restaurant_id']."','".$save['item_name']."','".$save['price']."','".$save['category']."','".$img['image']."')";
        // echo "<pre>"; print_r($sql); die;
         if ($this->conn->query($sql) === TRUE) {
             echo "New record created successfully";
@@ -126,7 +130,7 @@ public function getItem($id){
     
     public function editSave($key){
         //echo "<pre>"; print_r($key); die;
-        $sql = "UPDATE menu SET item_name='".$key['item_name']."',price='".$key['price']."',category='".$key['category']."' WHERE id=". $key['id'];
+        $sql = "UPDATE menu SET item_name='".$key['item_name']."', price='".$key['price']."', category='".$key['category']."' WHERE id=". $key['id'];
        // echo "<pre>"; print_r($sql); die;
         
         

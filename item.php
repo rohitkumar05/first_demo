@@ -8,7 +8,9 @@ if(isset($_POST['submit'])) {
    $errors = $idemValidation->menuValidate($_POST);
     if (count($errors) == 0) {
       $dbQueries = new DbQueries;
-      $dbQueries->saveItem($_POST);
+      $dbQueries->saveItem($_POST,$_FILES);
+     
+
    }
 }
 
@@ -22,7 +24,7 @@ $categories = $commonFunction1->itemList();
 <div class="container">
 
 <div class="col-md-12">
-<form action=""  method="POST" id="item" novalidate>
+<form action=""  method="POST" id="item" enctype="multipart/form-data" novalidate>
 
   <div class="col-md-8 col-md-offset-2">
   <a href="item_listing.php" class="btn btn-success" style="float:right; margin-bottom:10px; ">Food List</a>
@@ -76,6 +78,12 @@ $categories = $commonFunction1->itemList();
               }
           ?>
 
+          </div>
+          <br>
+          <div>
+          <label>Image</label>
+          <br>
+          <input type="file" name="file" id="fileToUpload">
           </div>
           <br>
           <div>

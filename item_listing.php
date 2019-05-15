@@ -1,5 +1,8 @@
 <?php
-
+session_start();
+require_once('./common_files/common_function.php');
+$commonFunction = new CommonFunction;
+$commonFunction->redrectToLogin();
 
 require_once('./common_files/database_queries.php');
 if(isset($_GET) && $_GET['method'] == 'delete') {
@@ -11,6 +14,7 @@ if(isset($_GET) && $_GET['method'] == 'delete') {
 require_once('./common_files/database_queries.php');
 $dbQueries = new DbQueries;
 $result = $dbQueries->itemList($_GET["id"]);
+
 ?>
 
 <?php include_once('./partials/header.php'); ?> 

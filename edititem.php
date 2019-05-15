@@ -1,23 +1,27 @@
 <?php
-require_once('./common_files/database_queries.php');
-include_once('./common_files/common_function.php');
 
-$commonFunction1 = new CommonFunction;
+session_start();
+        require_once('./common_files/common_function.php');
+        $commonFunction = new CommonFunction;
+        $commonFunction->redrectToLogin();
+
+      require_once('./common_files/database_queries.php');
+      include_once('./common_files/common_function.php');
+
+        $commonFunction1 = new CommonFunction;
         $categories = $commonFunction1->itemList();
-
         $dbQueries = new DbQueries;
         $result = $dbQueries->getItem($_GET["id"]);
-if(isset($_POST['submit'])) {
-
+  if(isset($_POST['submit'])) {
       include_once('./common_files/validation/menu_validate.php');
       $idemValidation = new IdemValidation();
       $errors = $idemValidation->editValidate($_POST);
-      if (count($errors) == 0) {
+  if (count($errors) == 0) {
         $dbQueries = new DbQueries;
         $dbQueries->editSave($_POST);
         $result = $dbQueries->getItem($_POST["id"]);
     
-          }
+      }
 
 }
         
@@ -37,7 +41,7 @@ if(isset($_POST['submit'])) {
             <input type="hidden" name="id" value="<?php echo $_GET['id']?>"/>
           <div class="form-group">
           <label>Item Name: </label>
-          <input type="text" placeholder="ENTER  NAME :" id="item_name"   name="item_name" class="form-control demo" value="<?php echo $result['item_name']?>"/>
+          <input type="text" value="<?php echo ($_POST["item_name"])?>" id="item_name"   name="item_name" class="form-control demo" value="<?php echo $result['item_name']?>"/>
           <?php 
               if (isset($errors['item_name'])) {
                 ?>
@@ -49,7 +53,7 @@ if(isset($_POST['submit'])) {
         <br>
           <div class="form-group">
           <label>Price: </label>
-          <input type="text" placeholder="ENTER PRICE :" id="price"   name="price" class="form-control demo" value="<?php echo $result['price']?>"/>
+          <input type="text" value="<?php echo ($_POST["price"])?>" id="price"   name="price" class="form-control demo" value="<?php echo $result['price']?>"/>
           <?php 
               if (isset($errors['price'])) {
                 ?>
@@ -60,10 +64,10 @@ if(isset($_POST['submit'])) {
        <br>
         <label>category</label>
       
-      <select name="category"  id="category" class=" form-control demo" value="<?php echo $result['category']?>">
+      <select name="category"  id="category" class=" form-control demo" value="<?php echo $result['category']||$_POST["category"]?>">
         <option value="">--SELECT category--</option>
         <?php foreach($categories as $category) {?>
-            <option value="<?php echo $category;?>" <?php if ($category == $result['category']) echo "selected" ?>>
+            <option value="<?php echo $category;?>" <?php if ($category == $result['category']||$_GET["category"] ) echo "selected" ?>>
             <?php echo $category;?></option>
         <?php } ?>
         

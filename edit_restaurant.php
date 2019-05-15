@@ -27,7 +27,7 @@ $dbQueries = new DbQueries;
 <?php include_once('./partials/header.php'); ?>
 <div class="container">
 <div class="col-md-12">
-<form action=""  method="POST" id="kingRest urant" novalidate>
+<form action=""  method="POST" id="kingResturant" novalidate>
 
   <div class="col-md-8 col-md-offset-2">
       

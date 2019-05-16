@@ -1,5 +1,7 @@
 <?php
 session_start();
+
+
   require_once('./common_files/common_function.php');
   //move this code to common function file
   $commonFunction = new CommonFunction;
@@ -14,7 +16,7 @@ session_start();
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">APPNA PROJECT.COM</a>
+          <a class="navbar-brand" href="dashboard.php">APPNA PROJECT.COM</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -33,7 +35,7 @@ session_start();
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-cog fa-fw" aria-hidden="true"></i>Settings</a><b class="caret"></b></a>
               <ul class="dropdown-menu">
-             
+                  <li><a href="edit.php"class="fa fa-user-md" >Edit Profile</a></li>
                 <li><a href="reset.php"class="fa fa-key" > Change password</a></li>
                 
                 <li><a href="dashboard.php?logout=true"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>

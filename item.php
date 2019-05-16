@@ -8,7 +8,15 @@ if(isset($_POST['submit'])) {
    $errors = $idemValidation->menuValidate($_POST);
     if (count($errors) == 0) {
       $dbQueries = new DbQueries;
-      $dbQueries->saveItem($_POST,$_FILES);
+      $imageName = time()."_".$_FILES['image']['name'];
+      
+      $lastIndetId = $dbQueries->saveItem($_POST, $imageName);
+      if (!empty($lastIndetId)) {
+        $commonFunction = new CommonFunction;
+        $target_file = 'images/'.$imageName;
+        $commonFunction->fileUpload($target_file, $_FILES);
+       // echo "<pre>"; print_r($target_file); die;
+      }
      
 
    }
@@ -83,11 +91,11 @@ $categories = $commonFunction1->itemList();
           <div>
           <label>Image</label>
           <br>
-          <input type="file" name="file" id="fileToUpload">
+          <input type="file" name="image" id="image">
           </div>
           <br>
           <div>
-          <input type="submit" class="btn btn-success col-md-3 form-control  container form-control " value="ADD ITEM" name="submit">
+          <input type="submit" class="btn btn-success col-md-3 form-control  container form-control " value="Add Item" name="submit">
           </div>
 
 

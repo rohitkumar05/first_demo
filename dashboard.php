@@ -4,6 +4,9 @@ session_start();
 require_once('./common_files/common_function.php');
 $commonFunction = new CommonFunction;
 $commonFunction->redrectToLogin();
+require_once('./common_files/common_function.php');
+$commonFunction = new CommonFunction;
+$commonFunction->redrectToLogin();
 //move this code to common function file
 if (isset($_GET) && $_GET['logout'] == 'true') {
     $commonFunction = new CommonFunction;

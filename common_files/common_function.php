@@ -48,6 +48,16 @@ class CommonFunction {
         $categories =["Veg","Non-Veg","Fast-Food"];
         return $categories;
     }
+
+
+    public function fileUpload($target_file, $img){
+        // die($target_file);
+        if (move_uploaded_file($img["image"]["tmp_name"], $target_file)) {
+            echo "The file ". basename( $img["image"]["tmp_name"]). " has been uploaded.";
+        } else {
+            echo "Sorry, there was an error uploading your file.";
+        }
+    }
 }
 
 ?>

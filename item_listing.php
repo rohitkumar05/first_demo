@@ -4,17 +4,18 @@ require_once('./common_files/common_function.php');
 $commonFunction = new CommonFunction;
 $commonFunction->redrectToLogin();
 
-require_once('./common_files/database_queries.php');
-if(isset($_GET) && $_GET['method'] == 'delete') {
-    $id = $_GET['id'];
-     $dbQueries3 = new DbQueries;
-     $result3 = $dbQueries3->deleteItem($id);
-    
-}
-require_once('./common_files/database_queries.php');
-$dbQueries = new DbQueries;
-$result = $dbQueries->itemList($_GET["id"]);
+    require_once('./common_files/database_queries.php');
+    if(isset($_GET) && $_GET['method'] == 'delete') {
+        $id = $_GET['id'];
+        $dbQueries3 = new DbQueries;
+        $result3 = $dbQueries3->deleteItem($id);
+        
 
+    }
+        require_once('./common_files/database_queries.php');
+        $dbQueries = new DbQueries;
+        $result = $dbQueries->itemList($_GET["id"]);
+        
 ?>
 
 <?php include_once('./partials/header.php'); ?> 
@@ -34,13 +35,13 @@ $result = $dbQueries->itemList($_GET["id"]);
         <?php while($row = mysqli_fetch_array($result)) {?>
             <div class="col-md-3">
                 <h3><?php echo $row['category'];?></h3>
-                <a href="veg.php"><img src="http://localhost/first_demo/1e06e19dff772dfc3e7a51caaddd16a5.jpeg"  alt="Cinque Terre"  class="mx-auto d-block img-thumbnail" alt="Cinque Terre" style="width:50%"></a>
+                <a href="veg.php"><img src="images/<?php echo $row['image'];?>"  alt="Cinque Terre"  class="mx-auto d-block img-thumbnail" alt="Cinque Terre" style="width:50%"></a>
                 <p>Item Name: <?php echo $row['item_name'];?></p>
                 <p>Price: <?php echo $row['price'];?></p>
-                
+               
                 <div> 
-                    <a href="edititem.php?id=<?php echo $row['id']?>" onclick="return confirm('Are you sure to Edit this record?')">Edit</a> |
-                    <a href="item_listing.php?id=<?php echo $row['id']?>&method=delete"onclick="return confirm('Are you sure to delete this record?')">Delete</a>
+                    <a href="edititem.php?id=<?php echo $row['id']?>">Edit</a> |
+                    <a href="item_listing.php?id=<?php  echo $row['id']?>&method=delete"onclick="return confirm('Are you sure to delete this record?')">Delete</a>
                 
                 </div>
                 </div>

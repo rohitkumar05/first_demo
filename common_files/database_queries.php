@@ -19,29 +19,42 @@ class DbQueries extends DbConnect
 
         $this->conn->close();
 
-        
-
     }
-     
 
-
-    public function saveItem($save,$img){
+    public function saveItem($save,$imageName){
         //echo "<pre>"; print_r($save); die;
+        // $imageName = time()."_".$img['image']['name'];
         $user_id = $_SESSION['user']['id'];
-        $sql="insert into menu(user_id,restaurant_id,item_name,price,category,image)values($user_id,'".$save['restaurant_id']."','".$save['item_name']."','".$save['price']."','".$save['category']."','".$img['image']."')";
-       // echo "<pre>"; print_r($sql); die;
-        if ($this->conn->query($sql) === TRUE) {
+        $sql="insert into menu(user_id,restaurant_id,item_name,price,category,image)values($user_id,'".$save['restaurant_id']."','".$save['item_name']."','".$save['price']."','".$save['category']."','".$imageName ."')";
+          //echo "<pre>"; print_r($target_file); die;
+          $lastIndetId = null;
+          if ($this->conn->query($sql) === TRUE) {
+            $lastIndetId = mysqli_insert_id($this->conn);
             echo "New record created successfully";
         } else {
             echo "Error: " . $sql . "<br>" . $this->conn->error;
         }
 
-        $this->conn->close();
+        return $lastIndetId;
 
+        
     }
+    public function editSave($key,$imageName){
+    //    echo "<pre>"; print_r($imageName); die;
+        $sql = "UPDATE menu SET item_name='".$key['item_name']."', price='".$key['price']."', category='".$key['category']."', image='".$imageName ."' WHERE id=". $key['id'];
+       //echo "<pre>"; print_r($sql); die;
+        
+        
+        if ($this->conn->query($sql) === TRUE) {
+            echo "Record updated successfully";
+        } else {
+            echo "Error updating record: " . $this->conn->error;
+        }
+        // $this->conn->close();
+    }
+     
 
     
-
     public function login_user($data, $commfun) {
         $encyypted_password = $commfun->encrypt_our_password($data['password']);
 
@@ -52,8 +65,6 @@ class DbQueries extends DbConnect
         return $rows;
     }
     
-    
-
     public function fetch_users(){
         $sql = "SELECT * FROM users ";
         $result=mysqli_query($this->conn, $sql);
@@ -114,35 +125,21 @@ public function getItem($id){
 }
      
 
-    public function saveEdit($abc){
+public function saveEdit($abc){
 
-        $sql = "UPDATE users SET first_name='".$abc['first_name']."',last_name='".$abc['last_name']."',
-        gender='".$abc['gender']."',address='".$abc['address']."',phone_number='".$abc['phone_number']."',zip_code='".$abc['zip_code']."',
-        city='".$abc['city']."',state='".$abc['state']."',country='".$abc['country']."'  WHERE id=". $abc['id'];
+    $sql = "UPDATE users SET first_name='".$abc['first_name']."',last_name='".$abc['last_name']."',
+    gender='".$abc['gender']."',address='".$abc['address']."',phone_number='".$abc['phone_number']."',zip_code='".$abc['zip_code']."',
+    city='".$abc['city']."',state='".$abc['state']."',country='".$abc['country']."'  WHERE id=". $abc['id'];
 
-         if ($this->conn->query($sql) === TRUE) {
-            echo "Record updated successfully";
-        } else {
-            echo "Error updating record: " . $this->conn->error;
-        }
-        $this->conn->close();
+     if ($this->conn->query($sql) === TRUE) {
+        echo "Record updated successfully";
+    } else {
+        echo "Error updating record: " . $this->conn->error;
     }
+    $this->conn->close();
+}
     
-    public function editSave($key){
-        //echo "<pre>"; print_r($key); die;
-        $sql = "UPDATE menu SET item_name='".$key['item_name']."', price='".$key['price']."', category='".$key['category']."' WHERE id=". $key['id'];
-       // echo "<pre>"; print_r($sql); die;
-        
-        
-        if ($this->conn->query($sql) === TRUE) {
-            echo "Record updated successfully";
-        } else {
-            echo "Error updating record: " . $this->conn->error;
-        }
-        // $this->conn->close();
-    }
-
-
+    
 
 
     public function editRestaurant($done){
@@ -185,9 +182,6 @@ public function getItem($id){
     }
 
     
-
-
-
      public function resetPassword($data,$commFun){
             
            $encrypted_Password = $commFun->encrypt_our_password($data['new_password']);
@@ -201,7 +195,6 @@ public function getItem($id){
             }
             $this->conn->close();
                 }
-
 
 
      public function restaurantAdd($restaurantData){
@@ -218,7 +211,6 @@ public function getItem($id){
 
     }
 
-    
 }    
 
 

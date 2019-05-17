@@ -57,6 +57,16 @@ class CommonFunction {
         } else {
             echo "Sorry, there was an error uploading your file.";
         }
+
+    }
+    public function imageUpload($target_file,$img){
+        if (move_uploaded_file($img["image"]["tmp_name"], $target_file)) {
+            echo "The file ". basename( $img["image"]["tmp_name"]). " has been uploaded.";
+        } else {
+            echo "Sorry, there was an error uploading your file.";
+        }
+
+
     }
 }
 

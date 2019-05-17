@@ -39,6 +39,25 @@ class DbQueries extends DbConnect
 
         
     }
+    public function restaurantAdd($restaurantData,$imageName){
+       
+        $user_id = $_SESSION['user']['id'];
+        $sql= "Insert into restaurants(user_id, name, address, phone_number, city, zip_code, state, country,image) values ($user_id, '".$restaurantData['name']."', '".$restaurantData['address']."', '".$restaurantData['phone_number']."', '".$restaurantData['city']."', '".$restaurantData['zip_code']."', '".$restaurantData['state']."', '".$restaurantData['country']."','".$imageName ."')";
+        //echo "<pre>"; print_r($sql); die;
+        $lastIndetId = null;
+        if ($this->conn->query($sql) === TRUE) {
+          $lastIndetId = mysqli_insert_id($this->conn);
+          echo "New record created successfully";
+      } else {
+          echo "Error: " . $sql . "<br>" . $this->conn->error;
+      }
+
+      return $lastIndetId;
+
+      
+  }
+
+
     public function editSave($key,$imageName){
     //    echo "<pre>"; print_r($imageName); die;
         $sql = "UPDATE menu SET item_name='".$key['item_name']."', price='".$key['price']."', category='".$key['category']."', image='".$imageName ."' WHERE id=". $key['id'];
@@ -53,7 +72,7 @@ class DbQueries extends DbConnect
         // $this->conn->close();
     }
      
-
+    
     
     public function login_user($data, $commfun) {
         $encyypted_password = $commfun->encrypt_our_password($data['password']);
@@ -197,19 +216,7 @@ public function saveEdit($abc){
                 }
 
 
-     public function restaurantAdd($restaurantData){
-       
-         $user_id = $_SESSION['user']['id'];
-         $sql= "Insert into restaurants(user_id, name, address, phone_number, city, zip_code, state, country) values ($user_id, '".$restaurantData['name']."', '".$restaurantData['address']."', '".$restaurantData['phone_number']."', '".$restaurantData['city']."', '".$restaurantData['zip_code']."', '".$restaurantData['state']."', '".$restaurantData['country']."')";
-         if ($this->conn->query($sql) === TRUE) {
-            echo "New record created successfully";
-        } else {
-            echo "Error: " . $sql . "<br>" . $this->conn->error;
-        }
-
-        $this->conn->close();
-
-    }
+     
 
 }    
 

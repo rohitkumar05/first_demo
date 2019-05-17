@@ -1,5 +1,7 @@
 <?php
 session_start();
+
+include_once('./common_files/database_queries.php');
 include_once('./common_files/common_function.php');
 $commonFunction = new CommonFunction;
 
@@ -11,23 +13,34 @@ $states = $commonFunction->stateList();
 
 if(isset($_POST['submit'])) {
     include_once('./common_files/validation/restaurant_validate.php');
-    $restaurantValidation1 = new RestaurantValidation();
-    $errors = $restaurantValidation1->validateRestaurant($_POST);
-    if (count($errors) == 0) {
-        include_once('./common_files/database_queries.php');
-        $dbQueries1 = new DbQueries;
-        $dbQueries1->restaurantAdd($_POST);
-        
-        }
-    }
-
+    $restaurantValidation = new RestaurantValidation();
     
+    $errors = $restaurantValidation->validateRestaurant($_POST);
+    //echo "<pre>"; print_r($errors); die;
+    if (count($errors) == 0) {
+
+      $dbQueries = new DbQueries;
+     // echo "<pre>"; print_r($$dbQueries); die;
+      $imageName = time()."_".$_FILES['image']['name'];
+      //echo "<pre>"; print_r($_FILES); die;
+      $lastIndetId = $dbQueries->restaurantAdd($_POST, $imageName);
+     // echo "<pre>"; print_r($imageName); die;
+      if (!empty($lastIndetId)) {
+        $commonFunction = new CommonFunction;
+        $target_file = 'images/'.$imageName;
+        $commonFunction->imageUpload($target_file,$_FILES);
+       // echo "<pre>"; print_r($target_file); die;
+      }
+     
+
+   }
+  }
 ?>
 <?php include_once('./partials/header.php');?>
 
 <div class="container">
 <div class="col-md-12">
-<form action=""  method="POST" id="myrest" novalidate>
+<form action=""  method="POST" id="myrest" enctype="multipart/form-data" novalidate>
   <div class="col-md-8 col-md-offset-2">
           <h1 style="color:black;"> ADD RESTAURANT </h1>
             <div class="form-group">
@@ -124,6 +137,10 @@ if(isset($_POST['submit'])) {
               }
           ?>
          </div>
+         <label>Image</label>
+          <br>
+          <input type="file" name="image" id="image">
+          </div>
          <div>
           <input type="submit" class="btn btn-success col-md-3 form-control  container form-control " value="SUBMIT" name="submit">
           </div>

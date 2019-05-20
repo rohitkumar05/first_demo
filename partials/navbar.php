@@ -1,7 +1,4 @@
 <?php
-session_start();
-
-
   require_once('./common_files/common_function.php');
   //move this code to common function file
   $commonFunction = new CommonFunction;

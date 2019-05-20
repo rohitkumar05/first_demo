@@ -48,6 +48,10 @@ class CommonFunction {
         $categories =["Veg","Non-Veg","Fast-Food"];
         return $categories;
     }
+    public function statusList(){
+        $status =["Active","Inactive"];
+        return $status;
+    }
 
 
     public function fileUpload($target_file, $img){

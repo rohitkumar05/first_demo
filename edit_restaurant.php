@@ -21,6 +21,7 @@ $dbQueries = new DbQueries;
         $commonFunction = new CommonFunction;
         $countries = $commonFunction->countryList();
         $states = $commonFunction->stateList();
+        $status = $commonFunction->statusList();
 
 
 ?>
@@ -135,10 +136,19 @@ $dbQueries = new DbQueries;
                           }
                       ?>
                       </div>
-                
-                      
-                      
+                      <br>
+                <div>
+                <label>Status:</label>
+                      <select name="status" id="status" class=" form-control demo" >
+                        <option value="">--Select-Status--</option>
+                        
+                        <?php foreach($status as $data) {?>
+                            <option value="<?php echo $data;?>" <?php if ($data == $result2['state']) echo "selected" ?>>
+                            <?php echo $data;?></option>
+                        <?php } ?>
+                        </div>
                       <div>
+                        <br>
                       <input type="submit" class="btn btn-success col-md-3 form-control  container form-control " value="SUBMIT" name="submit">
                       </div>
           </div> 

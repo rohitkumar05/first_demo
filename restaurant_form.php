@@ -8,7 +8,7 @@ $commonFunction = new CommonFunction;
 $commonFunction->redrectToLogin();
 $countries = $commonFunction->countryList();
 $states = $commonFunction->stateList();
-
+$status = $commonFunction->statusList();
 
 
 if(isset($_POST['submit'])) {

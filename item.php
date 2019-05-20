@@ -6,17 +6,13 @@ if(isset($_POST['submit'])) {
    include_once('./common_files/validation/menu_validate.php');
    $idemValidation = new IdemValidation();
    $errors = $idemValidation->menuValidate($_POST);
-
-
     if (count($errors) == 0) {
       $dbQueries = new DbQueries;
       $imageName = time()."_".$_FILES['image']['name'];
-      include_once('./common_files/database_queries.php');
+      
       $lastIndetId = $dbQueries->saveItem($_POST, $imageName);
       if (!empty($lastIndetId)) {
-        include_once('./common_files/common_function.php');
         $commonFunction = new CommonFunction;
-        die("rohit");
         $target_file = 'images/'.$imageName;
         $commonFunction->fileUpload($target_file, $_FILES);
        // echo "<pre>"; print_r($target_file); die;

@@ -86,22 +86,32 @@ class DbQueries extends DbConnect
     
     public function fetch_users(){
         $sql = "SELECT * FROM users ";
-        $result=mysqli_query($this->conn, $sql);
+        $result=mysqli_query($this->conn,$sql);
         return $result;
 
     } 
 
     public function itemList($red){
-        $sql = "SELECT * FROM menu WHERE restaurant_id=". $red;
-        // die($sql);
-        $result3=mysqli_query($this->conn, $sql);
-        return $result3;
+      
+        $user_id = $_SESSION['user']['id'];
+         
+        $sql = "SELECT * FROM menu WHERE user_id=". $user_id;
+        //echo "<pre>";print_r($sql); die;
+        $result =mysqli_query($this->conn,$sql);
+          //  echo "<pre>";print_r($result); die;
+        return $result;
 
 
 
     }
 
     public function restaurant_listing(){
+        $user_id = $_SESSION['user']['id'];
+        $sql = "SELECT * FROM restaurants WHERE user_id= ". $user_id;
+        $result=mysqli_query($this->conn, $sql);
+        return $result;
+    }
+    public function restaurant_dashboard(){
         $user_id = $_SESSION['user']['id'];
         $sql = "SELECT * FROM restaurants WHERE user_id= ". $user_id;
         $result=mysqli_query($this->conn, $sql);
@@ -162,7 +172,7 @@ public function saveEdit($abc){
 
 
     public function editRestaurant($done){
-        $sql = "UPDATE restaurants SET name='".$done['name']."', phone_number='".$done['phone_number']."', address='".$done['address']."', city='".$done['city']."', zip_code='".$done['zip_code']."', state='".$done['state']."', country='".$done['country']."' WHERE id=". $done['id'];
+        $sql = "UPDATE restaurants SET name='".$done['name']."', phone_number='".$done['phone_number']."', address='".$done['address']."', city='".$done['city']."', zip_code='".$done['zip_code']."', state='".$done['state']."', country='".$done['country']."',status='".$done['status']."' WHERE id=". $done['id'];
        
         if ($this->conn->query($sql) === TRUE) {
             echo "Record updated successfully";
@@ -188,7 +198,13 @@ public function saveEdit($abc){
 
     public function deleteItem($id){
         $csk ="DELETE FROM menu WHERE id = '".$id."'";
-        $result3 = mysqli_query($this->conn,$csk);
+        $result = mysqli_query($this->conn,$csk);
+    }
+
+
+    public function deleteDashboard($id){
+        $kkr ="DELETE FROM menu WHERE id = '".$id."'";
+        $result2 = mysqli_query($this->conn,$kkr);
     }
 
     public function userReset($users){

@@ -143,7 +143,7 @@ $dbQueries = new DbQueries;
                         <option value="">--Select-Status--</option>
                         
                         <?php foreach($status as $data) {?>
-                            <option value="<?php echo $data;?>" <?php if ($data == $result2['state']) echo "selected" ?>>
+                            <option value="<?php echo $data;?>" <?php if ($data == $result2['status']) echo "selected" ?>>
                             <?php echo $data;?></option>
                         <?php } ?>
                         </div>

@@ -113,7 +113,7 @@ class DbQueries extends DbConnect
     }
     public function restaurant_dashboard(){
         $user_id = $_SESSION['user']['id'];
-        $sql = "SELECT * FROM restaurants WHERE user_id= ". $user_id;
+        $sql = "SELECT * FROM restaurants WHERE user_id= ". $user_id ." AND status != 'Inactive'";
         $result=mysqli_query($this->conn, $sql);
         return $result;
     }
@@ -172,14 +172,21 @@ public function saveEdit($abc){
 
 
     public function editRestaurant($done){
-        $sql = "UPDATE restaurants SET name='".$done['name']."', phone_number='".$done['phone_number']."', address='".$done['address']."', city='".$done['city']."', zip_code='".$done['zip_code']."', state='".$done['state']."', country='".$done['country']."',status='".$done['status']."' WHERE id=". $done['id'];
+        $sql = "UPDATE restaurants SET name='".$done['name']."', phone_number='".$done['phone_number']."', address='".$done['address']."', city='".$done['city']."', zip_code='".$done['zip_code']."', state='".$done['state']."', country='".$done['country']."', status='".$done['status']."' WHERE id=". $done['id'];
        
         if ($this->conn->query($sql) === TRUE) {
             echo "Record updated successfully";
         } else {
             echo "Error updating record: " . $this->conn->error;
         }
-      
+        // if($status == 'Active')
+        // {
+        //     mysqli_query($this->$conn,"UPDATE `active` SET `status` = 'Inactive'");
+        // }
+        // else
+        // {
+        //     mysqli_query($this->$conn,"UPDATE `active` SET `status` = 'Active'");
+        // }
     }
     
 

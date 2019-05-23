@@ -91,6 +91,15 @@ class DbQueries extends DbConnect
 
     } 
 
+
+    public function intex_user(){
+        $sql = "SELECT * FROM restaurants inner JOIN   users ON users.id = restaurants.user_id where  status != 'Inactive'";
+        $result=mysqli_query($this->conn,$sql);
+        // $rows = mysqli_fetch_array($result);
+        //echo "<pre>";print_r($rows); die;
+        return $result;
+    }
+
     public function itemList($red){
       
         $user_id = $_SESSION['user']['id'];
@@ -111,6 +120,8 @@ class DbQueries extends DbConnect
         $result=mysqli_query($this->conn, $sql);
         return $result;
     }
+    
+
     public function restaurant_dashboard(){
         $user_id = $_SESSION['user']['id'];
         $sql = "SELECT * FROM restaurants WHERE user_id= ". $user_id ." AND status != 'Inactive'";

@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 if ($_POST['submit']) {
     
     require_once('./common_files/validation/validate.php');

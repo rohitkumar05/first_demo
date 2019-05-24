@@ -1,6 +1,10 @@
 <?php
 session_start();
+
 require_once('db_connect.php');
+// ini_set('display_errors', 1);
+// ini_set('display_startup_errors', 1);
+// error_reporting(E_ALL);
 class DbQueries extends DbConnect
 {
     public function saveUser($userData, $encrypted_password) {
@@ -93,10 +97,8 @@ class DbQueries extends DbConnect
 
 
     public function intex_user(){
-        $sql = "SELECT * FROM restaurants inner JOIN   users ON users.id = restaurants.user_id where  status != 'Inactive'";
-        $result=mysqli_query($this->conn,$sql);
-        // $rows = mysqli_fetch_array($result);
-        //echo "<pre>";print_r($rows); die;
+        $sql = "SELECT restaurants.id, restaurants.name, restaurants.address, restaurants.city, restaurants.state, restaurants.country, restaurants.phone_number, restaurants.image, users.id as user_id, users.first_name, users.last_name FROM restaurants inner JOIN users ON users.id = restaurants.user_id where status != 'Inactive' ORDER BY restaurants.id desc"; 
+        $result = mysqli_query($this->conn,$sql);
         return $result;
     }
 

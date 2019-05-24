@@ -33,6 +33,14 @@ class CommonFunction {
             
     }
 
+    public function imageType($image){
+        return (!empty($image) ? "images/".$image : $this->defaultImage());
+    }
+
+    private function defaultImage() {
+        return "partials/images.png";
+    }
+
     public function countryList() {
         $countries = ["India", "Japan", "United States of America", "South Korean", "Germany", "China", 
         "England", "Canada", "Sweden", "Kerala", "Australia", "Russia", "Finland"];

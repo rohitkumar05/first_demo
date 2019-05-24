@@ -8,7 +8,7 @@ $commonFunction = new CommonFunction;
 $commonFunction->redrectToLogin();
 $countries = $commonFunction->countryList();
 $states = $commonFunction->stateList();
-$status = $commonFunction->statusList();
+
 
 
 if(isset($_POST['submit'])) {
@@ -16,20 +16,18 @@ if(isset($_POST['submit'])) {
     $restaurantValidation = new RestaurantValidation();
     
     $errors = $restaurantValidation->validateRestaurant($_POST);
-    //echo "<pre>"; print_r($errors); die;
     if (count($errors) == 0) {
 
       $dbQueries = new DbQueries;
-     // echo "<pre>"; print_r($$dbQueries); die;
+     
       $imageName = time()."_".$_FILES['image']['name'];
-      //echo "<pre>"; print_r($_FILES); die;
+     
       $lastIndetId = $dbQueries->restaurantAdd($_POST, $imageName);
-     // echo "<pre>"; print_r($imageName); die;
       if (!empty($lastIndetId)) {
         $commonFunction = new CommonFunction;
         $target_file = 'images/'.$imageName;
         $commonFunction->imageUpload($target_file,$_FILES);
-       // echo "<pre>"; print_r($target_file); die;
+       
       }
      
 

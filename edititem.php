@@ -4,6 +4,7 @@ session_start();
 require_once('./common_files/common_function.php');
 $commonFunction = new CommonFunction;
 $commonFunction->redrectToLogin();
+$status = $commonFunction->statusList();
 
       require_once('./common_files/database_queries.php');
       include_once('./common_files/common_function.php');
@@ -25,6 +26,9 @@ $commonFunction->redrectToLogin();
                 $commonFunction = new CommonFunction;
                 $target_file = 'images/'.$imageName;
                 $commonFunction->fileUpload($target_file, $_FILES);
+                
+                
+                
                 
                 //echo "<pre>"; print_r($result); die;
             }
@@ -92,6 +96,18 @@ $commonFunction->redrectToLogin();
             <?php
           }
             ?>
+            <br>
+<div>
+                <label>Status:</label>
+                      <select name="status" id="status" class=" form-control demo" >
+                        <option value="">--Select-Status--</option>
+                        
+                        <?php foreach($status as $data) {?>
+                            <option value="<?php echo $data;?>" <?php if ($data == $result2['status']) echo "selected" ?>>
+                            <?php echo $data;?></option>
+                        <?php } ?>
+                        </div>
+
               <div>
           <label>Image</label>
           <br>

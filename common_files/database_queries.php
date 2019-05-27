@@ -64,7 +64,7 @@ class DbQueries extends DbConnect
 
     public function editSave($key,$imageName){
     //    echo "<pre>"; print_r($imageName); die;
-        $sql = "UPDATE menu SET item_name='".$key['item_name']."', price='".$key['price']."', category='".$key['category']."', image='".$imageName ."' WHERE id=". $key['id'];
+        $sql = "UPDATE menu SET item_name='".$key['item_name']."', price='".$key['price']."', category='".$key['category']."', status='".$key['status']."', image='".$imageName ."' WHERE id=". $key['id'];
        //echo "<pre>"; print_r($sql); die;
         
         
@@ -101,6 +101,11 @@ class DbQueries extends DbConnect
         $result = mysqli_query($this->conn,$sql);
         return $result;
     }
+    public function foodlist(){
+        $sql = "SELECT restaurants.id, restaurants.name, restaurants.address, restaurants.city, restaurants.state, restaurants.country, restaurants.phone_number, restaurants.image, menu.id, menu.user_id, menu.restaurant_id, menu.item_name, menu.price, menu.category, menu.status, menu.image FROM restaurants LEFT JOIN menu ON menu.restaurant_id = restaurants.id WHERE restaurants.status !='Inactive' AND menu.status !='Inactive'";
+        $result = mysqli_query($this->conn,$sql);
+        return $result; 
+}
 
     public function itemList($red){
       
@@ -116,6 +121,11 @@ class DbQueries extends DbConnect
 
     }
 
+    
+
+
+
+    
     public function restaurant_listing(){
         $user_id = $_SESSION['user']['id'];
         $sql = "SELECT * FROM restaurants WHERE user_id= ". $user_id;
@@ -156,6 +166,9 @@ class DbQueries extends DbConnect
         return $row; 
         
     }
+
+    
+
 public function getItem($id){
     
     $sql = "SELECT * FROM menu WHERE id = '".$id."'";

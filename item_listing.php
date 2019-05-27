@@ -40,8 +40,19 @@ require_once('./common_files/database_queries.php');
 <div class="col-md-12">
 <ol class="list-group">
 
-      <?php while($row = mysqli_fetch_array($result)) {?>
-            <div class="col-md-3">
+<?php while($row = mysqli_fetch_array($result)) {
+            if ($row['status'] == 'Inactive') {
+                $inactiveClass = "inactive";
+            } else {
+                $inactiveClass = "";
+            }
+
+            
+            ?>
+            
+            
+            <div class="col-md-3 ">
+            <ol class="list-group <?php echo $inactiveClass;?>">
                 <h3><?php echo $row['category'];?></h3>
                 <li class="list-group-item"><a href="php"><img src="images/<?php echo $row['image'];?>"  alt="Cinque Terre"  class="mx-auto d-block img-thumbnail" alt="Cinque Terre" style="height:40%;width:100%;background-cover;"></a></li>
                 <li class="list-group-item"> <b><p>Item Name: <?php echo $row['item_name'];?></p></li>

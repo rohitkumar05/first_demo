@@ -14,7 +14,7 @@
             <span class="icon-bar"></span>
           </button>
           <a class="navbar-brand" href="dashboard.php">APPNA PROJECT.COM</a>
-          <a class="navbar-brand" href="home.php">HOME</a>
+          <a class="navbar-brand" href="index.php">HOME</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->

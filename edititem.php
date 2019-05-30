@@ -64,7 +64,7 @@ $status = $commonFunction->statusList();
           <label>Price: </label>
           <input type="text" id="price"   name="price" class="form-control demo" value="<?php echo (isset($_POST['price']) ? $_POST['price'] : $result['price'])?>"/>
           <?php 
-              if (isset($errors['price'])) {
+              if (isset($errors['price'])) {  
                 ?>
                   <label><?php echo $errors['price'] ?></label>
                 <?php

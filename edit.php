@@ -7,7 +7,7 @@ $commonFunction->redrectToLogin();
 require_once('./common_files/database_queries.php');
 $dbQueries = new DbQueries;
 $result = $dbQueries->getUser($_GET["id"]);
-if(isset($_POST['submit'])) {
+if(isset($_POST[' '])) {
     include_once('./common_files/validation/validate.php');
     $validate1 = new Validations();
     $errors = $validate1->validate_edit_form($_POST);

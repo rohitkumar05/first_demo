@@ -57,9 +57,11 @@ require_once('./common_files/database_queries.php');
                 <li class="list-group-item"><a href="php"><img src="images/<?php echo $row['image'];?>"  alt="Cinque Terre"  class="mx-auto d-block img-thumbnail" alt="Cinque Terre" style="height:40%;width:100%;background-cover;"></a></li>
                 <li class="list-group-item"> <b><p>Item Name: <?php echo $row['item_name'];?></p></li>
                 <li class="list-group-item"><p>Price: <?php echo $row['price'];?></p></li>
-               
-                
-                <li class="list-group-item">   <a href="edititem.php?id=<?php echo $row['id']?>">Edit</a> |
+                <li class="list-group-item"> 
+                <?php if ($row['status'] == 'Inactive') {?>
+                    <a href="javascript:void(0);" onclick="activateMenu(<?php echo $row['id'];?>)"  id="activate_<?php echo $row['id'] ?>">Activate</a> |
+                <?php } ?>
+                  <a href="edititem.php?id=<?php echo $row['id']?>">Edit</a> |
                     <a href="item_listing.php?id=<?php  echo $row['id']?>&method=delete"onclick="return confirm('Are you sure to delete this record?')">Delete</a>
                 </li>
                 
@@ -75,7 +77,22 @@ require_once('./common_files/database_queries.php');
 $(document).ready(function() {
     $('#example').DataTable();
 });
+function activateMenu(id) {
+    $.ajax({
+        url: "ajax/activate_menu.php",
+        method: 'post',
+        dataType: 'json',
+        data: {id: id},
+        success: function(result){
+            if (result.status == true) {
+                $('#activate_' + id).hide();
+            }
+        },
+    });
+
+}
 </script>
+
 <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 
 

@@ -24,7 +24,18 @@ class DbQueries extends DbConnect
         $this->conn->close();
 
     }
+ 
+    public function userss($etc){
+    $sql="insert into tests (name) values ('".$etc['name']."')";
+   // echo "<pre>"; print_r($sql); die;
+    if ($this->conn->query($sql) === TRUE) {
+        echo "New record created successfully";
+    } else {
+        echo "Error: " . $sql . "<br>" . $this->conn->error;
+    }
 
+    }
+    
     public function saveItem($save,$imageName){
         //echo "<pre>"; print_r($save); die;
         // $imageName = time()."_".$img['image']['name'];
@@ -94,6 +105,14 @@ class DbQueries extends DbConnect
         return $result;
 
     } 
+
+     public function nameData($id){
+        $sql ="SELECT * FROM tests ";
+        //echo "<pre>"; print_r($sql); die;
+        $result = mysqli_query($this->conn,$sql);
+        //echo "<pre>"; print_r($result); die;
+        return $result;
+    }
 
 
     public function intex_user(){
@@ -250,22 +269,49 @@ public function saveEdit($abc){
     }
 
     
-     public function resetPassword($data,$commFun){
+    public function resetPassword($data,$commFun){
             
-           $encrypted_Password = $commFun->encrypt_our_password($data['new_password']);
-          
-            $spy ="UPDATE users SET password ='".$encrypted_Password."' where id = '".$_SESSION['user']['id']."'";       
+        $encrypted_Password = $commFun->encrypt_our_password($data['new_password']);
+        
+        $spy ="UPDATE users SET password ='".$encrypted_Password."' where id = '".$_SESSION['user']['id']."'";       
+    
+        if ($this->conn->query($spy) === TRUE) {
+            echo "Record updated successfully";
+        } else {
+            echo "Error updating record: " . $this->conn->error;
+        }
+        $this->conn->close();
+    }
+
+    public function changeStatus($id) {
+        $sql = "UPDATE restaurants SET  status='Active' WHERE id=". $id;
        
-            if ($this->conn->query($spy) === TRUE) {
-                echo "Record updated successfully";
-            } else {
-                echo "Error updating record: " . $this->conn->error;
-            }
-            $this->conn->close();
-                }
+        if ($this->conn->query($sql) === TRUE) {
+            $status = true;
+        } else {
+            $status = false;
+        }
+        return $status;
+    }
 
+    public function addressAdd($id){
+        $sql = "SELECT * FROM restaurants WHERE  id=". $id;
+        $result = mysqli_query($this->conn,$sql);
+        $row = mysqli_fetch_assoc($result);
+        // print_r($row);
+        return $row;
+    }
 
-     
+    public function menuStatus($id) {
+        $sql = "UPDATE menu SET  status='Active' WHERE id=". $id;
+       
+        if ($this->conn->query($sql) === TRUE) {
+            $status = true;
+        } else {
+            $status = false;
+        }
+        return $status;
+    } 
 
 }    
 

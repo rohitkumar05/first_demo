@@ -11,15 +11,13 @@
   <link rel="stylesheet" href="https://jqueryvalidation.org/files/demo/site-demos.css">
   <link rel="stylesheet" href="http://localhost/first_demo/assets/css/style.css">
   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
-
-
-
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <!-- <script src="js/jquery.validate.js"></script>
-  <script src="js/sigup-form.js"></script> -->
-  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
-  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script> -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+
+
+  
 </head>
 <body>
 <?php include_once('./partials/navbar.php'); ?>

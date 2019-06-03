@@ -40,7 +40,7 @@ class DbQueries extends DbConnect
         //echo "<pre>"; print_r($save); die;
         // $imageName = time()."_".$img['image']['name'];
         $user_id = $_SESSION['user']['id'];
-        $sql="insert into menu(user_id,restaurant_id,item_name,price,category,image)values($user_id,'".$save['restaurant_id']."','".$save['item_name']."','".$save['price']."','".$save['category']."','".$imageName ."')";
+        $sql="insert into menu(user_id,restaurant_id,item_name,price,category, status, image)values($user_id,'".$save['restaurant_id']."','".$save['item_name']."','".$save['price']."','".$save['category']."', '".$save['status']."', '".$imageName ."')";
           //echo "<pre>"; print_r($target_file); die;
           $lastIndetId = null;
           if ($this->conn->query($sql) === TRUE) {
@@ -57,7 +57,7 @@ class DbQueries extends DbConnect
     public function restaurantAdd($restaurantData,$imageName){
        
         $user_id = $_SESSION['user']['id'];
-        $sql= "Insert into restaurants(user_id, name, address, phone_number, city, zip_code, state, country,image) values ($user_id, '".$restaurantData['name']."', '".$restaurantData['address']."', '".$restaurantData['phone_number']."', '".$restaurantData['city']."', '".$restaurantData['zip_code']."', '".$restaurantData['state']."', '".$restaurantData['country']."','".$imageName ."')";
+        $sql= "Insert into restaurants(user_id, name, address, phone_number, city, zip_code, state, country, status, image) values ($user_id, '".$restaurantData['name']."', '".$restaurantData['address']."', '".$restaurantData['phone_number']."', '".$restaurantData['city']."', '".$restaurantData['zip_code']."', '".$restaurantData['state']."', '".$restaurantData['country']."',    '".$restaurantData['status']."','".$imageName ."')";
         //echo "<pre>"; print_r($sql); die;
         $lastIndetId = null;
         if ($this->conn->query($sql) === TRUE) {
